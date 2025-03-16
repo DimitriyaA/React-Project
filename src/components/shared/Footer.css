@@ -1,0 +1,8 @@
+.magical-footer {
+    background: linear-gradient(90deg, #5a3e1b, #8b5e34);
+    color: #f8e7c1;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+}

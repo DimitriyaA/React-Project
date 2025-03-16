@@ -1,0 +1,12 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: url('https://cdnb.artstation.com/p/assets/images/images/024/794/705/large/nicolas-ruffault-vr-studio-04.jpg?1583553794&dl=1') no-repeat center center/cover;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
