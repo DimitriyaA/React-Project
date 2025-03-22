@@ -1,18 +1,17 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from './components/Shared/Header';
-import Footer from './components/shared/Footer';
-import './App.css';
+import AppRouter from "./router";
+import { AuthProvider } from "./contexts/AuthContext";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="app-container">
-      <Header />
-      <main className="main-content">
-        <Outlet />
-      </main>
+    <AuthProvider>
+      <Navbar />
+      <div className="pt-20">
+        <AppRouter />
+      </div>
       <Footer />
-    </div>
+    </AuthProvider>
   );
 }
 
