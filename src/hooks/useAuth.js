@@ -1,4 +1,3 @@
-// src/hooks/useAuth.js
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/firebaseConfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -8,9 +7,9 @@ export const useAuth = () => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+            setUser(currentUser); // актуализирате състоянието с текущия потребител
         });
-        return () => unsubscribe();
+        return () => unsubscribe(); // чистите абонамента при демонтриране на компонента
     }, []);
 
     const logout = () => {
@@ -23,5 +22,5 @@ export const useAuth = () => {
             });
     };
 
-    return { user, logout };
+    return { user, logout }; // Връщате user и logout
 };

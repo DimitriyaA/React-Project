@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuthContext } from "../contexts/AuthContext";
 import { WandSparkles } from "lucide-react";
 
 const Navbar = () => {
-    const { user, logout } = useAuth();
+    const { user, logout } = useAuthContext();
 
     return (
         <nav className="bg-gray-950 bg-opacity-80 p-4 flex justify-between items-center fixed top-0 left-0 w-full z-50 backdrop-blur">

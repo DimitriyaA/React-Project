@@ -6,5 +6,5 @@ body {
     background: url('/assets/magic-bg.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Cinzel', serif;
-    color: white;
+    color: rgb(0, 0, 0);
 }

@@ -1,20 +1,24 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuthContext } from "../contexts/AuthContext";
 import Home from "../pages/Home";
 import Catalog from "../pages/Catalog";
 import AddItem from "../pages/AddItem";
 import MagicMap from "../pages/MagicMap";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const PrivateRoute = ({ children }) => {
-    const { user } = useAuth();
+    const { user } = useAuthContext();
+    if (user === null) {
+        return <div>Loading...</div>;  // Показва "Loading..." докато не се определи потребителя
+    }
     return user ? children : <Navigate to="/login" />;
 };
 
 const AppRouter = () => {
     return (
-        <Router>
+        <ErrorBoundary>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/catalog" element={<Catalog />} />
@@ -24,7 +28,7 @@ const AppRouter = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<PrivateRoute>Profile Page</PrivateRoute>} />
             </Routes>
-        </Router>
+        </ErrorBoundary>
     );
 };
 
