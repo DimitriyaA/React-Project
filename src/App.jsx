@@ -3,7 +3,9 @@ import AppRouter from "./router/AppRouter";
 import { AuthProvider } from "./contexts/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ErrorBoundary from "./components/ErrorBoundary";
+import 'animate.css';
+
+import ErrorBoundary from "./components/ErrorBoundary"; // Импортирай ErrorBoundary
 
 function App() {
   return (

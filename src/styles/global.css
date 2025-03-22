@@ -1,10 +1,154 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@keyframes sparkle {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.7);
+    }
 
+    100% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Фон, който наподобява нощно небе с магически ефекти */
 body {
-    background: url('/assets/magic-bg.jpg') no-repeat center center fixed;
+    background: radial-gradient(circle at top, rgba(15, 6, 34, 0.9), rgba(5, 0, 10, 0.95)),
+        url('/images/starry-sky.gif') no-repeat center center fixed;
     background-size: cover;
+    color: #fff;
     font-family: 'Cinzel', serif;
-    color: rgb(0, 0, 0);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Същите ефекти за звездите */
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: rgba(255, 215, 0, 0.8);
+    /* Златисти звезди */
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: sparkle 3s infinite alternate;
+}
+
+@keyframes fogAnimation {
+    0% {
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+.fog-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: fogAnimation 5s infinite;
+    pointer-events: none;
+}
+
+/* Центриране и стилове за основното съдържание */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1,
+h2 {
+    font-family: 'Cinzel', serif;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Заглавия */
+h1 {
+    font-size: 4rem;
+    color: #ffd700;
+    /* златисто */
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #8a2be2;
+    /* виолетово */
+    margin-bottom: 1.5rem;
+}
+
+/* Стилизирани бутони */
+button,
+.link-btn {
+    padding: 12px 24px;
+    background: linear-gradient(145deg, #ffd700, #ffa500);
+    color: white;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:hover,
+.link-btn:hover {
+    background: linear-gradient(145deg, #ffcc00, #ff8c00);
+}
+
+/* Секциите за съдържание */
+.section {
+    margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: #333;
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Форматиране за изображение */
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    height: 200px;
+    object-fit: cover;
 }

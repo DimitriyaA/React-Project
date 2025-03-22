@@ -1,28 +1,51 @@
+import { useEffect, useState } from "react";
+import { db } from "../firebase/firebaseConfig";
+import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import MagicStars from "../components/MagicStars";
+import MagicMap from "./MagicMap"; // Ако картата е компонент
 
 const Home = () => {
+    const [latestItems, setLatestItems] = useState([]);
+
+    useEffect(() => {
+        const fetchLatestItems = async () => {
+            const q = query(collection(db, "magicItems"), orderBy("createdAt", "desc"), limit(5));
+            const snapshot = await getDocs(q);
+            setLatestItems(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+        };
+        fetchLatestItems();
+    }, []);
+
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
-            <motion.h1
-                className="text-5xl md:text-7xl font-bold text-yellow-400"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1 }}
-            >
-                Магическият Свят
-            </motion.h1>
-            <p className="mt-4 text-lg max-w-xl">
-                Открий вълшебни артефакти, изследвай магическите локации и създай своя собствена колекция!
-            </p>
-            <div className="mt-6 flex gap-4">
-                <Link to="/catalog" className="px-6 py-3 bg-purple-600 rounded-xl hover:bg-purple-700 transition-all">
-                    Каталог
-                </Link>
-                <Link to="/map" className="px-6 py-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition-all">
-                    Карта на магьосниците
-                </Link>
+        <div className="container">
+            {/* Магически звезди */}
+            <MagicStars />
+
+            {/* Заглавие */}
+            <h1>✨ Магически свят ✨</h1>
+            <p className="text-xl text-gray-300 mb-10 italic">Открий артефакти, отвари и тайни от света на магията.</p>
+
+            {/* Последно добавени предмети */}
+            <h2>Последно добавени предмети</h2>
+            <div className="grid-container">
+                {latestItems.map((item) => (
+                    <div key={item.id} className="card">
+                        <img src={item.imageUrl} alt={item.name} />
+                        <h3>{item.name}</h3>
+                        <p>{item.description.slice(0, 80)}...</p>
+                        <Link to={`/item/${item.id}`} className="link-btn">Виж детайли</Link>
+                    </div>
+                ))}
             </div>
+
+            {/* Виж целия каталог */}
+            <Link to="/catalog" className="link-btn">Виж целия каталог</Link>
+
+            {/* Магическа карта */}
+            <h2>Магическа карта</h2>
+            <MagicMap />
+            <Link to="/map" className="link-btn">Виж картата на магьосниците</Link>
         </div>
     );
 };

@@ -1,7 +1,8 @@
 const Footer = () => {
     return (
-        <footer className="bg-gray-950 bg-opacity-80 text-center py-4 text-gray-400 mt-10">
-            © {new Date().getFullYear()} Магически Свят. Всички права запазени.
+        <footer className="bg-gradient-to-r from-purple-900 via-indigo-800 to-purple-900 text-center py-4 mt-20 shadow-inner">
+            <p className="text-yellow-300">© 2025 Магически Свят. Всички права запазени.</p>
+            <p className="text-gray-400 text-sm mt-2">Създадено с магия и любов ✨</p>
         </footer>
     );
 };
