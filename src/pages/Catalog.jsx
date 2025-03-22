@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const Catalog = () => {
     const [items, setItems] = useState([]);
@@ -52,11 +53,28 @@ const Catalog = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {filteredItems.length > 0 ? (
                     filteredItems.map((item) => (
-                        <div key={item.id} className="bg-gray-800 p-4 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                            <img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover rounded" />
+                        <div
+                            key={item.id}
+                            className="bg-gray-800 p-4 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 flex flex-col"
+                        >
+                            <img
+                                src={item.imageUrl}
+                                alt={item.name}
+                                className="w-full h-48 object-cover rounded mb-3"
+                            />
                             <h3 className="text-xl mt-2 text-yellow-200">{item.name}</h3>
-                            <p className="text-sm mt-1 text-gray-300">{item.description.slice(0, 100)}...</p>
-                            <span className="inline-block mt-2 px-2 py-1 bg-purple-700 text-xs rounded-full">{item.category}</span>
+                            <p className="text-sm mt-1 text-gray-300">
+                                {item.description.slice(0, 100)}...
+                            </p>
+                            <span className="inline-block mt-2 px-2 py-1 bg-purple-700 text-xs rounded-full self-start">
+                                {item.category}
+                            </span>
+                            <Link
+                                to={`/item/${item.id}`}
+                                className="mt-auto text-yellow-400 hover:text-yellow-300 transition duration-300 underline pt-4 block"
+                            >
+                                Виж детайли
+                            </Link>
                         </div>
                     ))
                 ) : (
