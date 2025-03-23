@@ -16,6 +16,8 @@ const Navbar = () => {
                 {/* Навигационни линкове */}
                 <div className="flex gap-8">
                     <Link to="/catalog" className="text-white hover:text-yellow-300 transition duration-300 text-lg">Каталог</Link>
+
+                    <Link to="/spellbook" className="text-white hover:text-yellow-300 transition duration-300 text-lg">Магии</Link>
                     <Link to="/map" className="text-white hover:text-yellow-300 transition duration-300 text-lg">Карта</Link>
                     {user && (
                         <Link to="/add-item" className="hover:text-yellow-300 transition duration-300 text-lg">Добави предмет</Link>

@@ -8,6 +8,7 @@ import MagicMap from "../pages/MagicMap";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ErrorBoundary from "../components/ErrorBoundary";
+import Spellbook from "../components/Spellbook";
 
 const PrivateRoute = ({ children }) => {
     const { user } = useAuthContext();
@@ -25,6 +26,7 @@ const AppRouter = () => {
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path="/add-item" element={<PrivateRoute><AddItem /></PrivateRoute>} />
                 <Route path="/item/:id" element={<ItemDetails />} />
+                <Route path="/spellbook" element={<Spellbook />} />
                 <Route path="/map" element={<MagicMap />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
