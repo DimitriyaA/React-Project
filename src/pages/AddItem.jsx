@@ -2,6 +2,7 @@ import { useState } from "react";
 import { db } from "../firebase/firebaseConfig";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../contexts/AuthContext"; // Импортираме контекста
 
 const AddItem = () => {
     const [name, setName] = useState("");
@@ -9,6 +10,7 @@ const AddItem = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [category, setCategory] = useState("");
     const navigate = useNavigate();
+    const { user } = useAuthContext(); // Вземаме текущия потребител от контекста
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,6 +18,12 @@ const AddItem = () => {
             alert("Моля, попълнете всички полета!");
             return;
         }
+
+        if (!user) {
+            alert("Не сте влезли в системата!");
+            return;
+        }
+
         try {
             await addDoc(collection(db, "magicItems"), {
                 name,
@@ -23,6 +31,7 @@ const AddItem = () => {
                 imageUrl,
                 category,
                 createdAt: serverTimestamp(),
+                createdBy: user.uid, // Добавяме потребителя като създател
             });
             navigate("/catalog");
         } catch (err) {
