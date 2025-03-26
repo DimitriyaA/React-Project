@@ -11,6 +11,13 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        // Проверка дали полетата са попълнени
+        if (!email || !password) {
+            setError("Моля, попълнете всички полета.");
+            return;
+        }
+
         try {
             await signInWithEmailAndPassword(auth, email, password);
             navigate("/");

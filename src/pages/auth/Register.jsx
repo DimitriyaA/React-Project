@@ -14,9 +14,22 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
 
+        // Проверка за празни полета
+        if (!email || !password || !rePassword || !username) {
+            setError("Моля, попълнете всички полета.");
+            return;
+        }
+
         // Проверка за съвпадение на паролите
         if (password !== rePassword) {
-            setError("Паролите не съвпадат");
+            setError("Паролите не съвпадат.");
+            return;
+        }
+
+        // Проверка за валиден имейл формат
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            setError("Моля, въведете валиден имейл адрес.");
             return;
         }
 
