@@ -1,27 +1,31 @@
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import { WandSparkles } from "lucide-react";
+import './Navbar.css';  // Импортираме CSS файла
 
 const Navbar = () => {
     const { user, logout } = useAuthContext();
 
     return (
-        <nav className="bg-transparent p-6 fixed top-0 left-0 w-full z-50 backdrop-blur-md shadow-lg">
-            <div className="flex justify-between items-center">
+        <nav className="navbar">
+            <div className="navbar-content">
                 {/* Лого с магическа пръчка */}
-                <Link to="/" className="text-yellow-400 text-4xl font-extrabold flex items-center gap-3 transition duration-300 hover:text-yellow-500">
+                <Link to="/" className="navbar-logo">
                     <WandSparkles size={32} /> Магически свят
                 </Link>
 
-                {/* Навигационни линкове */}
-                <div className="flex gap-8">
-                    <Link to="/catalog" className="text-white hover:text-yellow-300 transition duration-300 text-lg">Каталог</Link>
-
-                    <Link to="/spellbook" className="text-white hover:text-yellow-300 transition duration-300 text-lg">Магии</Link>
-                    <Link to="/map" className="text-white hover:text-yellow-300 transition duration-300 text-lg">Карта</Link>
+                {/* Навигационни линкове и потребителски бутон */}
+                <div className="navbar-links">
+                    <Link to="/catalog" className="navbar-link">Каталог</Link>
+                    {/* Бутона за добавяне на предмет, видим само ако има потребител */}
                     {user && (
-                        <Link to="/add-item" className="hover:text-yellow-300 transition duration-300 text-lg">Добави предмет</Link>
+                        <Link to="/add-item" className="navbar-link">Добави предмет</Link>
                     )}
+
+                    <Link to="/spellbook" className="navbar-link">Магии</Link>
+                    <Link to="/map" className="navbar-link">Карта</Link>
+
+
 
                     {/* Потребителски бутон */}
                     <div className="flex items-center gap-8">
@@ -30,7 +34,7 @@ const Navbar = () => {
                                 <span className="text-green-400 text-lg">Здравей, {user.email}</span>
                                 <button
                                     onClick={logout}
-                                    className="text-red-400 hover:text-red-500 transition duration-300 text-lg"
+                                    className="navbar-button"
                                     aria-label="Изход"
                                 >
                                     Изход
@@ -38,8 +42,8 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <Link to="/login" className="hover:text-green-300 transition duration-300 text-lg">Вход</Link>
-                                <Link to="/register" className="hover:text-green-300 transition duration-300 text-lg">Регистрация</Link>
+                                <Link to="/login" className="navbar-link">Вход</Link>
+                                <Link to="/register" className="navbar-link">Регистрация</Link>
                             </>
                         )}
                     </div>

@@ -1,0 +1,91 @@
+/* Navbar.css */
+
+/* Стилизация на основния контейнер на навигацията */
+.navbar {
+    background: linear-gradient(135deg, #B39DDB, #8f67d8);
+    padding: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    /* За размиване на фона */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Контейнер за логото и линковете */
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+}
+
+/* Лого стилове */
+.navbar-logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-logo:hover {
+    color: linear-gradient(145deg, #B39DDB, #8f67d8);
+}
+
+/* Контейнер за линковете и бутоните, премества всички в дясно */
+.navbar-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+    /* Това премества всичко в дясно */
+    align-items: center;
+}
+
+/* Основни стилове за линковете */
+.navbar-link {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+.navbar-link:hover {
+    color: #ffd700;
+    background-color: rgba(255, 215, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.navbar-link:active {
+    transform: scale(0.95);
+}
+
+/* Бутон за изход */
+.navbar-button {
+    background: linear-gradient(145deg, #B39DDB, #8f67d8);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.navbar-button:hover {
+    background: linear-gradient(145deg, #9482b6, #7b5db3);
+    transform: scale(1.05);
+}
+
+.navbar-button:active {
+    transform: scale(0.95);
+}
