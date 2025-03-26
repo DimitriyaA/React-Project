@@ -25,6 +25,8 @@ body {
     font-family: 'Cinzel', serif;
     overflow-x: hidden;
     min-height: 100vh;
+    margin-top: 10em;
+    ;
 }
 
 /* Стилове за фон (мъгла и звезди) */

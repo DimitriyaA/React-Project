@@ -1,0 +1,64 @@
+/* Контейнер за центриране */
+.add-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+/* Основен стил на формата */
+.add-item-form {
+    background: linear-gradient(135deg, #B39DDB, #8f67d8);
+    /* Полупрозрачен тъмен фон */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px;
+    color: white;
+    text-align: center;
+}
+
+/* Заглавие */
+.add-item-title {
+    font-size: 1.5rem;
+    color: #ffcc00;
+    margin-bottom: 1rem;
+}
+
+/* Полета за въвеждане */
+.add-item-form input,
+.add-item-form textarea,
+.add-item-form select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffffff;
+    color: #333;
+}
+
+/* Стил за бутона */
+.add-item-button {
+    width: 100%;
+    background: linear-gradient(145deg, #7d40ff, #5a2db0);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-item-button:hover {
+    background: linear-gradient(145deg, #5a2db0, #7d40ff);
+    transform: scale(1.05);
+}
+
+.add-item-button:active {
+    transform: scale(0.95);
+}

@@ -17,6 +17,7 @@ const Navbar = () => {
                 {/* Навигационни линкове и потребителски бутон */}
                 <div className="navbar-links">
                     <Link to="/catalog" className="navbar-link">Каталог</Link>
+                    <Link to="/search" className="navbar-link">Търсене в каталога</Link>
                     {/* Бутона за добавяне на предмет, видим само ако има потребител */}
                     {user && (
                         <Link to="/add-item" className="navbar-link">Добави предмет</Link>

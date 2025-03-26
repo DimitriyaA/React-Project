@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import Home from "../pages/Home";
-import Catalog from "../pages/Catalog";
+import CategoryPage from "../pages/Catalog";
+import SearchCatalog from "../pages/SearchCatalog";
 import AddItem from "../pages/AddItem";
 import ItemDetails from "../pages/ItemDetails";
 import MagicMap from "../pages/MagicMap";
@@ -23,7 +24,10 @@ const AppRouter = () => {
         <ErrorBoundary>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/catalog" element={<Catalog />} />
+                <Route path="/catalog" element={<CategoryPage />} />
+                <Route path="/catalog/:category" element={<CategoryPage />} />
+
+                <Route path="/search" element={<SearchCatalog />} />
                 <Route path="/add-item" element={<PrivateRoute><AddItem /></PrivateRoute>} />
                 <Route path="/item/:id" element={<ItemDetails />} />
                 <Route path="/spellbook" element={<Spellbook />} />

@@ -1,0 +1,109 @@
+/* Основен контейнер - центриран */
+.category-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 10em;
+    background: linear-gradient(135deg, #B39DDB, #8f67d8);
+    ;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Ляв панел (Категории) */
+.category-sidebar {
+    width: 25%;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(30, 30, 50, 0.9);
+}
+
+.category-sidebar h2 {
+    color: #8f67d8;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+/* Списък с категории */
+.category-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.category-sidebar li {
+    margin-bottom: 10px;
+}
+
+.category-sidebar button {
+    width: 100%;
+    background: linear-gradient(145deg, #7d40ff, #5a2db0);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.category-sidebar button:hover {
+    background: #5a189a;
+}
+
+/* Дясна част (Елементи от категорията) */
+.category-items {
+    width: 70%;
+}
+
+/* Списък на предметите - един под друг */
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Карта на предмет */
+.item-card {
+    background: rgba(40, 40, 60, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Стил на снимките */
+.item-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Стил на заглавието */
+.item-card h3 {
+    color: #8f67d8;
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+
+/* Стил на бутона */
+.item-card .details-button {
+    background: linear-gradient(145deg, #7d40ff, #5a2db0);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.item-card .details-button:hover {
+    background: #5a189a;
+}
