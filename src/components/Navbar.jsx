@@ -25,7 +25,7 @@ const Navbar = () => {
 
                     <Link to="/spellbook" className="navbar-link">Магии</Link>
                     <Link to="/map" className="navbar-link">Карта</Link>
-
+                    <Link to="/map/add" className="navbar-link">Добави локация</Link>
 
 
                     {/* Потребителски бутон */}
