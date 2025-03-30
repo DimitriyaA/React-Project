@@ -30,7 +30,9 @@ const Navbar = () => {
                         <Link to="/map/add" className="navbar-link">Добави локация</Link>
                     )}
 
-
+                    {user && (
+                        <Link to="/profile" className="navbar-link">Потребителски профил</Link>
+                    )}
 
                     {/* Потребителски бутон */}
                     <div className="flex items-center gap-8">

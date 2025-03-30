@@ -23,8 +23,12 @@ body {
     font-family: 'Cinzel', serif;
     overflow-x: hidden;
     min-height: 100vh;
-    margin-top: 10em;
-    ;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 5em;
 }
 
 .star-field {

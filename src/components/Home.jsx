@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase/firebaseConfig";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import MagicStars from "../components/MagicStars";
+import MagicStars from "./MagicStars"
 import MagicMap from "./MagicMap";
 
 const Home = () => {

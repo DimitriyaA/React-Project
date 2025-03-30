@@ -37,6 +37,7 @@ const AddLocation = () => {
                 lat: parseFloat(lat),
                 lng: parseFloat(lng),
                 userId: user.uid,
+                createdBy: user.displayName, // Добавяме името на потребителя
             });
 
             setName("");

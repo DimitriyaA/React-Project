@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../firebase/firebaseConfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
-export const useAuth = () => {
+const useAuth = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -24,3 +24,5 @@ export const useAuth = () => {
 
     return { user, logout }; // Връщате user и logout
 };
+
+export default useAuth;
