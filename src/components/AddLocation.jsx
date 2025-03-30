@@ -3,6 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useAuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "../styles/AddLocation.css";
 
 const AddLocation = () => {
     const { user } = useAuthContext();
@@ -15,9 +16,9 @@ const AddLocation = () => {
 
     if (!user) {
         return (
-            <div className="p-6 text-red-500 text-center">
-                <h2 className="text-2xl font-bold">Достъпът е отказан</h2>
-                <p>Само регистрирани потребители могат да добавят локации.</p>
+            <div className="add-location-container">
+                <h2 className="add-location-title text-red-500">Достъпът е отказан</h2>
+                <p className="add-location-message">Само регистрирани потребители могат да добавят локации.</p>
             </div>
         );
     }
@@ -37,7 +38,7 @@ const AddLocation = () => {
                 lat: parseFloat(lat),
                 lng: parseFloat(lng),
                 userId: user.uid,
-                createdBy: user.displayName, // Добавяме името на потребителя
+                createdBy: user.displayName,
             });
 
             setName("");
@@ -53,37 +54,37 @@ const AddLocation = () => {
     };
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl mb-4">Добави нова локация</h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="add-location-container">
+            <h1 className="add-location-title">Добави нова локация</h1>
+            <form onSubmit={handleSubmit} className="add-location-form">
                 <input
                     type="text"
                     placeholder="Име на локацията"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="border p-2 w-full"
+                    className="add-location-input"
                 />
                 <textarea
                     placeholder="Описание"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="border p-2 w-full"
+                    className="add-location-textarea"
                 />
                 <input
                     type="number"
                     placeholder="Географска ширина (lat)"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}
-                    className="border p-2 w-full"
+                    className="add-location-input"
                 />
                 <input
                     type="number"
                     placeholder="Географска дължина (lng)"
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
-                    className="border p-2 w-full"
+                    className="add-location-input"
                 />
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+                <button type="submit" className="add-location-button">
                     Добави локация
                 </button>
             </form>

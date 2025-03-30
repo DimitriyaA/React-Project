@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import { WandSparkles } from "lucide-react";
-import './Navbar.css';  // Импортираме CSS файла
 
 const Navbar = () => {
     const { user, logout } = useAuthContext();

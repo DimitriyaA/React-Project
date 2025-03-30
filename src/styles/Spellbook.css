@@ -1,0 +1,91 @@
+.spellbook-container {
+    background: linear-gradient(135deg, #B39DDB, #8f67d8);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    color: white;
+}
+
+.spellbook-title {
+    font-size: 2rem;
+    color: #ffcc00;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.spellbook-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.spellbook-input,
+.spellbook-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    font-size: 1rem;
+}
+
+.spellbook-button {
+    background: linear-gradient(145deg, #7d40ff, #5a2db0);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.spellbook-button:hover {
+    background: linear-gradient(145deg, #5a2db0, #7d40ff);
+    transform: scale(1.05);
+}
+
+.spellbook-button:active {
+    transform: scale(0.95);
+}
+
+.spellbook-message {
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.spellbook-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style-type: none;
+}
+
+.spellbook-item {
+    background: #2c2a47;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #5a2db0;
+}
+
+.spellbook-item-title {
+    font-size: 1.5rem;
+    color: #ffcc00;
+    margin-bottom: 1rem;
+}
+
+.spellbook-item-description {
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+.spellbook-item-footer {
+    font-size: 0.85rem;
+    color: #aaa;
+}

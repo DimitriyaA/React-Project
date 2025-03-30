@@ -4,25 +4,32 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const useAuth = () => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true); // Добавяме loading state
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser); // актуализирате състоянието с текущия потребител
+            setUser(currentUser);
+            setLoading(false); // Спираме зареждането
         });
-        return () => unsubscribe(); // чистите абонамента при демонтриране на компонента
+
+        return () => unsubscribe();
     }, []);
 
-    const logout = () => {
-        signOut(auth)
-            .then(() => {
-                console.log("Logged out successfully!");
-            })
-            .catch((error) => {
-                console.error("Error during logout: ", error);
-            });
+    const logout = async () => {
+        try {
+            await signOut(auth);
+            console.log("Logged out successfully!");
+        } catch (error) {
+            console.error("Error during logout: ", error);
+        }
     };
 
-    return { user, logout }; // Връщате user и logout
+    return {
+        user,
+        isAuthenticated: !!user, // Добавяме isAuthenticated
+        loading,
+        logout
+    };
 };
 
 export default useAuth;

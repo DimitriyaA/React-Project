@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useAuthContext } from "../contexts/AuthContext";
+import "../styles/Spellbook.css";
 
 const Spellbook = () => {
     const { user } = useAuthContext();
@@ -20,7 +21,7 @@ const Spellbook = () => {
         await addDoc(spellsRef, {
             name: newSpell.name,
             description: newSpell.description,
-            createdBy: user?.displayName || "Anonymous",  // Използваме user.displayName вместо user.email
+            createdBy: user?.displayName || "Anonymous",
             createdAt: new Date()
         });
         setNewSpell({ name: "", description: "" });
@@ -32,44 +33,42 @@ const Spellbook = () => {
     }, []);
 
     return (
-        <div className="bg-[#201c3b] p-6 rounded-xl shadow-xl border border-purple-800">
-            <h1 className="text-2xl font-bold text-yellow-300 text-center mb-4">📜  Магьосническа книга на магиите</h1>
+        <div className="spellbook-container">
+            <h1 className="spellbook-title">📜 Магьосническа книга на магиите</h1>
 
             {user ? (
-                <div className="flex flex-col gap-4 mb-6">
+                <div className="spellbook-form-container">
                     <input
                         type="text"
                         value={newSpell.name}
                         onChange={(e) => setNewSpell({ ...newSpell, name: e.target.value })}
-                        className="p-2 rounded bg-gray-800 border border-gray-600 text-white"
+                        className="spellbook-input"
                         placeholder="Име на магията..."
                     />
                     <textarea
                         value={newSpell.description}
                         onChange={(e) => setNewSpell({ ...newSpell, description: e.target.value })}
-                        className="p-2 rounded bg-gray-800 border border-gray-600 text-white"
+                        className="spellbook-textarea"
                         placeholder="Описание на магията..."
                         rows="3"
                     />
                     <button
                         onClick={addSpell}
-                        className="bg-yellow-400 hover:bg-yellow-300 text-black px-4 py-2 rounded shadow"
+                        className="spellbook-button"
                     >
                         Добавете магия
                     </button>
                 </div>
             ) : (
-                <p className="text-center text-gray-400 mb-6">🔒 Трябва да сте регистриран потребител, за да добавяте магии.</p>
-
+                <p className="spellbook-message">🔒 Трябва да сте регистриран потребител, за да добавяте магии.</p>
             )}
 
-
-            <ul className="space-y-4">
+            <ul className="spellbook-list">
                 {spells.map(spell => (
-                    <li key={spell.id} className="bg-gray-800 p-4 rounded border border-gray-600">
-                        <h3 className="text-xl font-bold text-yellow-300">{spell.name}</h3>
-                        <p className="text-gray-300">{spell.description}</p>
-                        <p className="text-sm text-gray-500 mt-2">🧙‍♂️ Създадено от: {spell.createdBy}</p>
+                    <li key={spell.id} className="spellbook-item">
+                        <h3 className="spellbook-item-title">{spell.name}</h3>
+                        <p className="spellbook-item-description">{spell.description}</p>
+                        <p className="spellbook-item-footer">🧙‍♂️ Създадено от: {spell.createdBy}</p>
                     </li>
                 ))}
             </ul>

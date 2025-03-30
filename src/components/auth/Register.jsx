@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import "../../styles/Auth.css";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -14,19 +15,16 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        // Проверка за празни полета
         if (!email || !password || !rePassword || !username) {
             setError("Моля, попълнете всички полета.");
             return;
         }
 
-        // Проверка за съвпадение на паролите
         if (password !== rePassword) {
             setError("Паролите не съвпадат.");
             return;
         }
 
-        // Проверка за валиден имейл формат
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(email)) {
             setError("Моля, въведете валиден имейл адрес.");
@@ -34,14 +32,10 @@ const Register = () => {
         }
 
         try {
-            // Регистрация на потребител с email и парола
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Актуализиране на профила с потребителско име
-            await updateProfile(user, {
-                displayName: username,
-            });
+            await updateProfile(user, { displayName: username });
 
             navigate("/");
         } catch (error) {
@@ -50,54 +44,37 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <form onSubmit={handleRegister} className="bg-gray-900 p-6 rounded-xl shadow-md text-white">
-                <h2 className="text-2xl mb-4">Регистрация</h2>
-
+        <div className="auth-container">
+            <form onSubmit={handleRegister} className="auth-form">
+                <h2 className="auth-title">Регистрация</h2>
                 <input
-                    className="w-full p-2 mb-2 text-black"
                     type="text"
                     placeholder="Потребителско име"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-
                 <input
-                    className="w-full p-2 mb-2 text-black"
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-
                 <input
-                    className="w-full p-2 mb-2 text-black"
                     type="password"
                     placeholder="Парола"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-
                 <input
-                    className="w-full p-2 mb-2 text-black"
                     type="password"
                     placeholder="Потвърдете паролата"
                     value={rePassword}
                     onChange={(e) => setRePassword(e.target.value)}
                 />
-
-                {/* Ако има грешка */}
-                {error && <p className="text-red-500 mb-4">{error}</p>}
-
-                <button
-                    type="submit"
-                    className="bg-green-600 px-4 py-2 rounded-lg w-full"
-                >
-                    Регистрирай се
-                </button>
-
-                <div className="mt-4 text-center text-gray-300">
-                    <p>Вече имате акаунт? <a href="/login" className="text-blue-400 hover:text-blue-600">Влезте тук</a></p>
+                {error && <p className="auth-error">{error}</p>}
+                <button type="submit" className="auth-button">Регистрирай се</button>
+                <div className="auth-footer">
+                    <p>Вече имате акаунт? <a href="/login">Влезте тук</a></p>
                 </div>
             </form>
         </div>
