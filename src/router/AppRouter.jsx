@@ -4,11 +4,13 @@ import Home from "../pages/Home";
 import CategoryPage from "../pages/Catalog";
 import SearchCatalog from "../pages/SearchCatalog";
 import AddItem from "../pages/AddItem";
+import EditItem from "../pages/EditItem";
 import ItemDetails from "../pages/ItemDetails";
 import MagicMap from "../pages/MagicMap";
 import AddLocation from "../pages/AddLocation";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+
 import ErrorBoundary from "../components/ErrorBoundary";
 import Spellbook from "../components/Spellbook";
 
@@ -31,12 +33,14 @@ const AppRouter = () => {
                 <Route path="/search" element={<SearchCatalog />} />
                 <Route path="/add-item" element={<PrivateRoute><AddItem /></PrivateRoute>} />
                 <Route path="/item/:id" element={<ItemDetails />} />
+                <Route path="/edit-item/:id" element={<EditItem />} />
+
                 <Route path="/spellbook" element={<Spellbook />} />
                 <Route path="/map" element={<MagicMap />} />
                 <Route path="/map/add" element={<AddLocation />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/profile" element={<PrivateRoute>Profile Page</PrivateRoute>} />
+
             </Routes>
         </ErrorBoundary>
     );

@@ -1,11 +1,13 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { doc, getDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs, query, where, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { useAuthContext } from "../contexts/AuthContext"; // Взимаме логнатия потребител
 
 const ItemDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { user } = useAuthContext(); // Взимаме информация за текущия потребител
     const [item, setItem] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -38,8 +40,22 @@ const ItemDetails = () => {
         fetchItem();
     }, [id]);
 
+    const handleDelete = async () => {
+        if (window.confirm("Сигурни ли сте, че искате да изтриете този предмет?")) {
+            try {
+                await deleteDoc(doc(db, "magicItems", id));
+                alert("Предметът беше успешно изтрит!");
+                navigate("/catalog");
+            } catch (error) {
+                console.error("Грешка при изтриване:", error);
+            }
+        }
+    };
+
     if (loading) return <p className="text-yellow-300 p-6">Зареждане...</p>;
     if (!item) return <p className="text-red-400 p-6">Артикулът не беше намерен.</p>;
+
+    const isOwner = user && item.createdBy === user.uid;
 
     return (
         <div className="p-6">
@@ -58,7 +74,24 @@ const ItemDetails = () => {
             />
             <p className="text-gray-300 mb-4">{item.description}</p>
             <p className="text-purple-400 mb-2">Категория: {item.category}</p>
-            <p className="text-green-400 mb-6">Създаден от: {item.createdBy || "неизвестен магьосник"}</p>
+            <p><strong>Създаден от:</strong> {item.createdByName || "Неизвестен магьосник"}</p>
+
+            {isOwner && (
+                <div className="flex space-x-4">
+                    <button
+                        onClick={() => navigate(`/edit-item/${id}`)}
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                    >
+                        ✏️ Редактирай
+                    </button>
+                    <button
+                        onClick={handleDelete}
+                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                    >
+                        🗑 Изтрий
+                    </button>
+                </div>
+            )}
 
             {relatedItems.length > 0 && (
                 <div className="mt-10">

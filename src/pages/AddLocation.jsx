@@ -1,12 +1,26 @@
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { useAuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const AddLocation = () => {
+    const { user } = useAuthContext(); // Взимаме потребителя от контекста
+    const navigate = useNavigate();
+
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
+
+    if (!user) {
+        return (
+            <div className="p-6 text-red-500 text-center">
+                <h2 className="text-2xl font-bold">Достъпът е отказан</h2>
+                <p>Само регистрирани потребители могат да добавят локации.</p>
+            </div>
+        );
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,18 +30,25 @@ const AddLocation = () => {
             return;
         }
 
-        await addDoc(collection(db, "locations"), {
-            name,
-            description,
-            lat: parseFloat(lat),
-            lng: parseFloat(lng)
-        });
+        try {
+            await addDoc(collection(db, "locations"), {
+                name,
+                description,
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+                userId: user.uid, // Запазваме кой потребител е добавил локацията
+            });
 
-        setName("");
-        setDescription("");
-        setLat("");
-        setLng("");
-        alert("Локацията е добавена успешно!");
+            setName("");
+            setDescription("");
+            setLat("");
+            setLng("");
+            alert("Локацията е добавена успешно!");
+            navigate("/map"); // Пренасочване към картата
+        } catch (error) {
+            console.error("Грешка при добавяне:", error);
+            alert("Възникна грешка. Опитайте отново.");
+        }
     };
 
     return (

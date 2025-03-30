@@ -25,7 +25,11 @@ const Navbar = () => {
 
                     <Link to="/spellbook" className="navbar-link">Магии</Link>
                     <Link to="/map" className="navbar-link">Карта</Link>
-                    <Link to="/map/add" className="navbar-link">Добави локация</Link>
+
+                    {user && (
+                        <Link to="/map/add" className="navbar-link">Добави локация</Link>
+                    )}
+
 
 
                     {/* Потребителски бутон */}
@@ -45,6 +49,7 @@ const Navbar = () => {
                             <>
                                 <Link to="/login" className="navbar-link">Вход</Link>
                                 <Link to="/register" className="navbar-link">Регистрация</Link>
+
                             </>
                         )}
                     </div>

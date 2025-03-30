@@ -31,8 +31,9 @@ const AddItem = () => {
                 description,
                 imageUrl,
                 category,
-                createdAt: serverTimestamp(),
                 createdBy: user.uid,
+                createdByName: user.displayName || "Анонимен", // Ако няма име, показваме "Анонимен"
+                createdAt: serverTimestamp(),
             });
             navigate("/catalog");
         } catch (err) {
