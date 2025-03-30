@@ -17,7 +17,7 @@ import Spellbook from "../components/Spellbook";
 const PrivateRoute = ({ children }) => {
     const { user } = useAuthContext();
     if (user === null) {
-        return <div>Loading...</div>;  // Показва "Loading..." докато не се определи потребителя
+        return <div>Loading...</div>;
     }
     return user ? children : <Navigate to="/login" />;
 };

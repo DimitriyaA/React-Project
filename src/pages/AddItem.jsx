@@ -3,7 +3,7 @@ import { db } from "../firebase/firebaseConfig";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
-import "../styles/AddItem.css"; // Импортираме CSS файла
+import "../styles/AddItem.css";
 
 const AddItem = () => {
     const [name, setName] = useState("");
@@ -32,7 +32,7 @@ const AddItem = () => {
                 imageUrl,
                 category,
                 createdBy: user.uid,
-                createdByName: user.displayName || "Анонимен", // Ако няма име, показваме "Анонимен"
+                createdByName: user.displayName || "Анонимен",
                 createdAt: serverTimestamp(),
             });
             navigate("/catalog");

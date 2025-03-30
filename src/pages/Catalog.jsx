@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../firebase/firebaseConfig";
 import { collection, getDocs, query, where, orderBy, limit } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import "../styles/Catalog.css"; // Импортираме стиловете
+import "../styles/Catalog.css";
 
-const CategorySidebar = ({ onCategorySelect }) => {
+const CategorySidebar = () => {
     const [categories, setCategories] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCategories = async () => {
-            const snapshot = await getDocs(collection(db, "magicItems"));
-            const categoriesSet = new Set();
-            snapshot.docs.forEach((doc) => categoriesSet.add(doc.data().category));
-            setCategories(Array.from(categoriesSet));
+            try {
+                const snapshot = await getDocs(collection(db, "magicItems"));
+                const categoriesSet = new Set();
+                snapshot.docs.forEach((doc) => {
+                    categoriesSet.add(doc.data().category);
+                });
+                setCategories(Array.from(categoriesSet));
+                console.log("Категории заредени:", Array.from(categoriesSet));
+            } catch (error) {
+                console.error("Грешка при зареждане на категориите:", error);
+            }
         };
         fetchCategories();
     }, []);
@@ -23,7 +32,7 @@ const CategorySidebar = ({ onCategorySelect }) => {
             <ul>
                 {categories.map((category) => (
                     <li key={category}>
-                        <button onClick={() => onCategorySelect(category)}>
+                        <button onClick={() => navigate(`/catalog/${category}`)}>
                             {category}
                         </button>
                     </li>
@@ -33,33 +42,51 @@ const CategorySidebar = ({ onCategorySelect }) => {
     );
 };
 
-const CategoryItems = ({ selectedCategory }) => {
+const CategoryItems = () => {
+    const { category } = useParams();
     const [items, setItems] = useState([]);
 
     useEffect(() => {
         const fetchItems = async () => {
-            let q;
-            if (selectedCategory) {
-                q = query(
-                    collection(db, "magicItems"),
-                    where("category", "==", selectedCategory),
-                    orderBy("createdAt", "desc"),
-                    limit(3)
-                );
-            } else {
-                q = query(collection(db, "magicItems"), orderBy("createdAt", "desc"), limit(3));
-            }
+            try {
+                console.log("Зареждане на предмети за категория:", category);
+                let q;
+                if (category) {
+                    q = query(
+                        collection(db, "magicItems"),
+                        where("category", "==", category),
+                        orderBy("createdAt", "desc"),
+                        limit(3)
+                    );
+                } else {
+                    q = query(
+                        collection(db, "magicItems"),
+                        orderBy("createdAt", "desc"),
+                        limit(3)
+                    );
+                }
 
-            const snapshot = await getDocs(q);
-            setItems(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+                const snapshot = await getDocs(q);
+                const fetchedItems = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                console.log("Намерени предмети:", fetchedItems);
+                setItems(fetchedItems);
+            } catch (error) {
+                console.error("Грешка при зареждане на предметите:", error);
+            }
         };
 
         fetchItems();
-    }, [selectedCategory]);
+    }, [category]);
 
     return (
         <div className="category-items">
-            <h2>Последни предмети</h2>
+            <h2>
+                {category ? `Последни предмети от "${category}"` : "Последни предмети"}
+            </h2>
             <div className="items-list">
                 {items.length > 0 ? (
                     items.map((item) => (
@@ -80,12 +107,10 @@ const CategoryItems = ({ selectedCategory }) => {
 };
 
 const CategoryPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState("");
-
     return (
         <div className="category-container">
-            <CategorySidebar onCategorySelect={setSelectedCategory} />
-            <CategoryItems selectedCategory={selectedCategory} />
+            <CategorySidebar />
+            <CategoryItems />
         </div>
     );
 };

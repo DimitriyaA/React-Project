@@ -52,7 +52,6 @@ const Login = () => {
                 {/* Ако има грешка */}
                 {error && <p className="text-red-500 mb-4">{error}</p>}
 
-                {/* Бутон за логин */}
                 <button
                     type="submit"
                     className="bg-purple-600 px-4 py-2 rounded-lg w-full"
@@ -60,7 +59,6 @@ const Login = () => {
                     Влезте
                 </button>
 
-                {/* Линк към регистрация */}
                 <div className="mt-4 text-center text-gray-300">
                     <p>Нямате акаунт? <a href="/register" className="text-blue-400 hover:text-blue-600">Регистрирайте се тук</a></p>
                 </div>

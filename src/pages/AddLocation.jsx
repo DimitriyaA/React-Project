@@ -5,7 +5,7 @@ import { useAuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const AddLocation = () => {
-    const { user } = useAuthContext(); // Взимаме потребителя от контекста
+    const { user } = useAuthContext();
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -36,7 +36,7 @@ const AddLocation = () => {
                 description,
                 lat: parseFloat(lat),
                 lng: parseFloat(lng),
-                userId: user.uid, // Запазваме кой потребител е добавил локацията
+                userId: user.uid,
             });
 
             setName("");
@@ -44,7 +44,7 @@ const AddLocation = () => {
             setLat("");
             setLng("");
             alert("Локацията е добавена успешно!");
-            navigate("/map"); // Пренасочване към картата
+            navigate("/map");
         } catch (error) {
             console.error("Грешка при добавяне:", error);
             alert("Възникна грешка. Опитайте отново.");

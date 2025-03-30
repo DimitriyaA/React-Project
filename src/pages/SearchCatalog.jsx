@@ -27,7 +27,6 @@ const SearchCatalog = () => {
         <div className="p-6">
             <h1 className="text-4xl mb-6 text-yellow-300">Каталог на вълшебни предмети</h1>
 
-            {/* Търсене и филтри */}
             <div className="flex flex-col md:flex-row gap-4 mb-6">
                 <input
                     type="text"
@@ -49,7 +48,6 @@ const SearchCatalog = () => {
                 </select>
             </div>
 
-            {/* Показване на предметите */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {filteredItems.length > 0 ? (
                     filteredItems.map((item) => (

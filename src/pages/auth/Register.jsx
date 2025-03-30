@@ -54,7 +54,6 @@ const Register = () => {
             <form onSubmit={handleRegister} className="bg-gray-900 p-6 rounded-xl shadow-md text-white">
                 <h2 className="text-2xl mb-4">Регистрация</h2>
 
-                {/* Потребителско име */}
                 <input
                     className="w-full p-2 mb-2 text-black"
                     type="text"
@@ -63,7 +62,6 @@ const Register = () => {
                     onChange={(e) => setUsername(e.target.value)}
                 />
 
-                {/* Email */}
                 <input
                     className="w-full p-2 mb-2 text-black"
                     type="email"
@@ -72,7 +70,6 @@ const Register = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
 
-                {/* Парола */}
                 <input
                     className="w-full p-2 mb-2 text-black"
                     type="password"
@@ -81,7 +78,6 @@ const Register = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                {/* Потвърдете паролата */}
                 <input
                     className="w-full p-2 mb-2 text-black"
                     type="password"
@@ -93,7 +89,6 @@ const Register = () => {
                 {/* Ако има грешка */}
                 {error && <p className="text-red-500 mb-4">{error}</p>}
 
-                {/* Бутон за регистрация */}
                 <button
                     type="submit"
                     className="bg-green-600 px-4 py-2 rounded-lg w-full"
@@ -101,7 +96,6 @@ const Register = () => {
                     Регистрирай се
                 </button>
 
-                {/* Линк към логин страницата */}
                 <div className="mt-4 text-center text-gray-300">
                     <p>Вече имате акаунт? <a href="/login" className="text-blue-400 hover:text-blue-600">Влезте тук</a></p>
                 </div>

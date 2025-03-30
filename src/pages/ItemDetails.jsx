@@ -2,12 +2,12 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection, getDocs, query, where, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
-import { useAuthContext } from "../contexts/AuthContext"; // Взимаме логнатия потребител
+import { useAuthContext } from "../contexts/AuthContext";
 
 const ItemDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { user } = useAuthContext(); // Взимаме информация за текущия потребител
+    const { user } = useAuthContext();
     const [item, setItem] = useState(null);
     const [relatedItems, setRelatedItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -21,7 +21,6 @@ const ItemDetails = () => {
                 const fetchedItem = { id: docSnap.id, ...docSnap.data() };
                 setItem(fetchedItem);
 
-                // Зареждане на препоръчани артикули от същата категория
                 const q = query(
                     collection(db, "magicItems"),
                     where("category", "==", fetchedItem.category)

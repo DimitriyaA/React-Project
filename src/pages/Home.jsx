@@ -3,7 +3,7 @@ import { db } from "../firebase/firebaseConfig";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import MagicStars from "../components/MagicStars";
-import MagicMap from "./MagicMap"; // Ако картата е компонент
+import MagicMap from "./MagicMap";
 
 const Home = () => {
     const [latestItems, setLatestItems] = useState([]);
@@ -22,11 +22,9 @@ const Home = () => {
             {/* Магически звезди */}
             <MagicStars />
 
-            {/* Заглавие */}
             <h1>✨ Магически свят ✨</h1>
             <p className="text-xl text-gray-300 mb-10 italic">Открий артефакти, отвари и тайни от света на магията.</p>
 
-            {/* Последно добавени предмети */}
             <h2>Последно добавени предмети</h2>
             <div className="grid-container">
                 {latestItems.map((item) => (
@@ -39,10 +37,8 @@ const Home = () => {
                 ))}
             </div>
 
-            {/* Виж целия каталог */}
             <Link to="/catalog" className="link-btn">Виж целия каталог</Link>
 
-            {/* Магическа карта */}
             <h2>Магическа карта</h2>
             <MagicMap />
             <Link to="/map" className="link-btn">Виж картата на магьосниците</Link>

@@ -4,7 +4,7 @@ import './styles/global.css';
 import App from './App';
 import 'animate.css';
 
-import { BrowserRouter } from 'react-router-dom';  // Импортиране на BrowserRouter
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
