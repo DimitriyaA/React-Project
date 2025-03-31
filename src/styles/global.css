@@ -99,10 +99,6 @@
     transform: scale(0.95);
 }
 
-.main-content {
-    padding-bottom: 80px;
-    /* или повече, в зависимост от височината на футъра */
-}
 
 body {
     background: radial-gradient(circle at top, rgba(12, 4, 74, 0.8), rgba(5, 0, 10, 0.85)),
@@ -116,8 +112,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 5em;
-    min-height: 100vh;
+    margin: 5em;
 }
 
 .star-field {
@@ -281,19 +276,4 @@ button:hover,
     border-radius: 8px;
     height: 200px;
     object-fit: cover;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-#root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.main-content {
-    flex: 1;
 }
