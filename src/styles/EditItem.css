@@ -1,3 +1,4 @@
+/* --- Основен стил --- */
 .edit-item-container {
     display: flex;
     justify-content: center;
@@ -15,6 +16,7 @@
     max-width: 450px;
     color: white;
     text-align: center;
+    transition: all 0.3s ease-in-out;
 }
 
 .edit-item-title {
@@ -61,4 +63,84 @@
     text-align: center;
     font-size: 1.2rem;
     color: white;
+}
+
+/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .edit-item-form {
+        padding: 1.5rem;
+        max-width: 400px;
+    }
+
+    .edit-item-title {
+        font-size: 1.4rem;
+    }
+
+    .edit-item-form input,
+    .edit-item-form textarea,
+    .edit-item-form select {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+
+    .edit-item-button {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+}
+
+/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+@media screen and (max-width: 768px) {
+    .edit-item-container {
+        padding: 1rem;
+    }
+
+    .edit-item-form {
+        padding: 1.2rem;
+        max-width: 90%;
+    }
+
+    .edit-item-title {
+        font-size: 1.3rem;
+    }
+
+    .edit-item-form input,
+    .edit-item-form textarea,
+    .edit-item-form select {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .edit-item-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+}
+
+/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+@media screen and (max-width: 480px) {
+    .edit-item-container {
+        padding: 0.5rem;
+    }
+
+    .edit-item-form {
+        padding: 1rem;
+        max-width: 95%;
+    }
+
+    .edit-item-title {
+        font-size: 1.2rem;
+    }
+
+    .edit-item-form input,
+    .edit-item-form textarea,
+    .edit-item-form select {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .edit-item-button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
 }

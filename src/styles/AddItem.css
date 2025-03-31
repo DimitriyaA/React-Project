@@ -1,3 +1,4 @@
+/* --- Основен стил за добавяне на артикул --- */
 .add-item-container {
     display: flex;
     justify-content: center;
@@ -55,4 +56,86 @@
 
 .add-item-button:active {
     transform: scale(0.95);
+}
+
+/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .add-item-form {
+        padding: 1.5rem;
+        max-width: 400px;
+    }
+
+    .add-item-title {
+        font-size: 1.4rem;
+    }
+
+    .add-item-form input,
+    .add-item-form textarea,
+    .add-item-form select {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+
+    .add-item-button {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+}
+
+/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+@media screen and (max-width: 768px) {
+    .add-item-container {
+        padding: 1rem;
+    }
+
+    .add-item-form {
+        padding: 1.2rem;
+        max-width: 90%;
+    }
+
+    .add-item-title {
+        font-size: 1.3rem;
+    }
+
+    .add-item-form input,
+    .add-item-form textarea,
+    .add-item-form select {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .add-item-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+}
+
+/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+@media screen and (max-width: 480px) {
+    .add-item-container {
+        padding: 0.5rem;
+    }
+
+    .add-item-form {
+        padding: 1rem;
+        max-width: 95%;
+    }
+
+    .add-item-title {
+        font-size: 1.2rem;
+    }
+
+    .add-item-form input,
+    .add-item-form textarea,
+    .add-item-form select {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        max-width: 90%;
+    }
+
+    .add-item-button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        max-width: 85%;
+    }
 }

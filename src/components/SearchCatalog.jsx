@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import "../styles/SearchCatalog.css";  // Включване на новия CSS файл
 
 const SearchCatalog = () => {
     const [items, setItems] = useState([]);
@@ -16,27 +17,30 @@ const SearchCatalog = () => {
         fetchItems();
     }, []);
 
-    const filteredItems = items.filter((item) => {
-        const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.description.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesCategory = categoryFilter ? item.category === categoryFilter : true;
-        return matchesSearch && matchesCategory;
-    });
+    const handleSearch = () => {
+        const filteredItems = items.filter((item) => {
+            const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                item.description.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesCategory = categoryFilter ? item.category === categoryFilter : true;
+            return matchesSearch && matchesCategory;
+        });
+        setItems(filteredItems);
+    };
 
     return (
-        <div className="p-6">
-            <h1 className="text-4xl mb-6 text-yellow-300">Каталог на вълшебни предмети</h1>
+        <div className="search-catalog-container">
+            <h1 className="search-catalog-title">Каталог на вълшебни предмети</h1>
 
-            <div className="flex flex-col md:flex-row gap-4 mb-6">
+            <div className="search-catalog-form-container">
                 <input
                     type="text"
                     placeholder="Търси предмет..."
-                    className="p-2 rounded w-full md:w-1/2 text-black"
+                    className="search-catalog-input"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <select
-                    className="p-2 rounded w-full md:w-1/4 text-black"
+                    className="search-catalog-select"
                     value={categoryFilter}
                     onChange={(e) => setCategoryFilter(e.target.value)}
                 >
@@ -46,20 +50,26 @@ const SearchCatalog = () => {
                     <option value="Книга">Книга</option>
                     <option value="Магически инструмент">Магически инструмент</option>
                 </select>
+                <button
+                    className="search-catalog-button"
+                    onClick={handleSearch}
+                >
+                    Търсене
+                </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {filteredItems.length > 0 ? (
-                    filteredItems.map((item) => (
-                        <div key={item.id} className="bg-gray-800 p-4 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                            <img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover rounded" />
-                            <h3 className="text-xl mt-2 text-yellow-200">{item.name}</h3>
-                            <p className="text-sm mt-1 text-gray-300">{item.description.slice(0, 100)}...</p>
-                            <span className="inline-block mt-2 px-2 py-1 bg-purple-700 text-xs rounded-full">{item.category}</span>
+            <div className="search-catalog-items">
+                {items.length > 0 ? (
+                    items.map((item) => (
+                        <div key={item.id} className="search-catalog-item">
+                            <img src={item.imageUrl} alt={item.name} />
+                            <h3 className="search-catalog-item-title">{item.name}</h3>
+                            <p className="search-catalog-item-description">{item.description.slice(0, 100)}...</p>
+                            <span className="search-catalog-item-footer">{item.category}</span>
                         </div>
                     ))
                 ) : (
-                    <p className="text-white">Няма намерени предмети.</p>
+                    <p className="search-catalog-message">Няма намерени предмети.</p>
                 )}
             </div>
         </div>

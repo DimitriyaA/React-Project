@@ -1,3 +1,4 @@
+/* --- Основен стил за автентикация --- */
 .auth-container {
     display: flex;
     justify-content: center;
@@ -72,4 +73,80 @@
 
 .auth-footer a:hover {
     text-decoration: underline;
+}
+
+/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .auth-form {
+        padding: 1.5rem;
+        max-width: 400px;
+    }
+
+    .auth-title {
+        font-size: 1.4rem;
+    }
+
+    .auth-form input {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+
+    .auth-button {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+}
+
+/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+@media screen and (max-width: 768px) {
+    .auth-container {
+        padding: 1rem;
+    }
+
+    .auth-form {
+        padding: 1.2rem;
+        max-width: 90%;
+    }
+
+    .auth-title {
+        font-size: 1.3rem;
+    }
+
+    .auth-form input {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .auth-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+}
+
+/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+@media screen and (max-width: 480px) {
+    .auth-container {
+        padding: 0.5rem;
+    }
+
+    .auth-form {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .auth-title {
+        font-size: 1.2rem;
+    }
+
+    .auth-form input {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        max-width: 80%;
+    }
+
+    .auth-button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        max-width: 0%;
+    }
 }

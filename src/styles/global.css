@@ -15,90 +15,7 @@
     }
 }
 
-.navbar {
-    background: linear-gradient(135deg, #B39DDB, #8f67d8);
-    padding: 1.5rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 50;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-}
-
-.navbar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 98%;
-}
-
-.navbar-logo {
-    color: white;
-    font-size: 2rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: color 0.3s ease;
-}
-
-.navbar-logo:hover {
-    color: linear-gradient(145deg, #B39DDB, #8f67d8);
-}
-
-
-.navbar-links {
-    display: flex;
-    gap: 1.5rem;
-    margin-left: auto;
-    align-items: center;
-}
-
-
-.navbar-link {
-    color: white;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-}
-
-.navbar-link:hover {
-    color: #ffd700;
-    background-color: rgba(255, 215, 0, 0.1);
-    transform: scale(1.05);
-}
-
-.navbar-link:active {
-    transform: scale(0.95);
-}
-
-.navbar-button {
-    background: linear-gradient(145deg, #B39DDB, #8f67d8);
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
-    margin-left: 10px;
-}
-
-.navbar-button:hover {
-    background: linear-gradient(145deg, #9482b6, #7b5db3);
-    transform: scale(1.05);
-}
-
-.navbar-button:active {
-    transform: scale(0.95);
-}
-
+/* --- Основни стилове --- */
 
 body {
     background: radial-gradient(circle at top, rgba(12, 4, 74, 0.8), rgba(5, 0, 10, 0.85)),
@@ -169,6 +86,241 @@ body {
     }
 }
 
+/* --- Навигационен бар (Navbar) --- */
+
+.navbar {
+    background: linear-gradient(135deg, #B39DDB, #8f67d8);
+    padding: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+}
+
+.navbar-logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-logo:hover {
+    color: linear-gradient(145deg, #B39DDB, #8f67d8);
+}
+
+.navbar-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+    align-items: center;
+}
+
+.navbar-link {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+.navbar-link:hover {
+    color: #ffd700;
+    background-color: rgba(255, 215, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.navbar-link:active {
+    transform: scale(0.95);
+}
+
+.navbar-button {
+    background: linear-gradient(145deg, #B39DDB, #8f67d8);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.navbar-button:hover {
+    background: linear-gradient(145deg, #9482b6, #7b5db3);
+    transform: scale(1.05);
+}
+
+.navbar-button:active {
+    transform: scale(0.95);
+}
+
+/* --- Сандвич меню --- */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
+/* --- Респонсив дизайн за мобилни и таблетни устройства --- */
+
+/* Стили за таблети */
+@media screen and (max-width: 1024px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .card img {
+        height: 180px;
+    }
+}
+
+/* Стили за мобилни устройства */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .card img {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .navbar-logo {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .card img {
+        height: 120px;
+    }
+}
+
+/* --- Респонсив за сандвич меню --- */
+@media (max-width: 1024px) {
+    .navbar-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transform: translateY(-10px);
+        opacity: 0;
+        max-height: 300px;
+        /* Добавяме ограничение на височината */
+        overflow-y: auto;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .navbar-link {
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Footer --- */
 
 .footer-container {
     position: fixed;
@@ -182,7 +334,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .footer-container p {
@@ -198,6 +349,8 @@ body {
     margin-top: 0.5rem;
 }
 
+/* --- Стилове за контейнера --- */
+
 .container {
     display: flex;
     justify-content: center;
@@ -208,6 +361,8 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+
+/* --- Заглавия --- */
 
 h1,
 h2 {
@@ -228,6 +383,8 @@ h2 {
     margin-bottom: 1.5rem;
 }
 
+/* --- Бутон и линкове --- */
+
 button,
 .link-btn {
     padding: 12px 24px;
@@ -246,6 +403,8 @@ button:hover,
 .link-btn:hover {
     background: linear-gradient(145deg, #ffcc00, #ff8c00);
 }
+
+/* --- Секция и картите --- */
 
 .section {
     margin: 20px 0;
@@ -276,4 +435,130 @@ button:hover,
     border-radius: 8px;
     height: 200px;
     object-fit: cover;
+}
+
+/* --- Сандвич меню --- */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
+/* --- Респонсив дизайн за мобилни и таблети --- */
+@media (max-width: 1024px) {
+    .navbar-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 0;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .navbar-links.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .navbar-link {
+        display: block;
+        width: 100%;
+        padding: 15px 0;
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar-link:last-child {
+        border-bottom: none;
+    }
+}
+
+/* --- Мобилни устройства (по-малки от 768px) --- */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .navbar-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .menu-toggle {
+        font-size: 1.8rem;
+        padding: 5px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .card img {
+        height: 150px;
+    }
+}
+
+/* --- Малки мобилни устройства (по-малки от 480px) --- */
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .navbar-logo {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .card img {
+        height: 120px;
+    }
 }

@@ -1,3 +1,4 @@
+/* --- Основен стил за добавяне на локация --- */
 .add-location-container {
     background: linear-gradient(135deg, #B39DDB, #8f67d8);
     padding: 2rem;
@@ -57,4 +58,74 @@
     text-align: center;
     color: #ccc;
     margin-bottom: 1rem;
+}
+
+/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .add-location-container {
+        padding: 1.5rem;
+        max-width: 500px;
+    }
+
+    .add-location-title {
+        font-size: 1.8rem;
+    }
+
+    .add-location-input,
+    .add-location-textarea {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+
+    .add-location-button {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+}
+
+/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+@media screen and (max-width: 768px) {
+    .add-location-container {
+        padding: 1rem;
+        max-width: 90%;
+    }
+
+    .add-location-title {
+        font-size: 1.6rem;
+    }
+
+    .add-location-input,
+    .add-location-textarea {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .add-location-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+}
+
+/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+@media screen and (max-width: 480px) {
+    .add-location-container {
+        padding: 0.5rem;
+        max-width: 100%;
+    }
+
+    .add-location-title {
+        font-size: 1.4rem;
+    }
+
+    .add-location-input,
+    .add-location-textarea {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        max-width: 90%;
+    }
+
+    .add-location-button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
 }
