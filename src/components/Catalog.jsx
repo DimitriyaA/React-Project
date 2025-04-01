@@ -18,7 +18,6 @@ const CategorySidebar = () => {
                     categoriesSet.add(doc.data().category);
                 });
                 setCategories(Array.from(categoriesSet));
-                console.log("Категории заредени:", Array.from(categoriesSet));
             } catch (error) {
                 console.error("Грешка при зареждане на категориите:", error);
             }
@@ -30,6 +29,9 @@ const CategorySidebar = () => {
         <div className="category-sidebar">
             <h2>Категории</h2>
             <ul>
+                <li>
+                    <button onClick={() => navigate(`/catalog`)}>Всички</button>
+                </li>
                 {categories.map((category) => (
                     <li key={category}>
                         <button onClick={() => navigate(`/catalog/${category}`)}>
@@ -49,43 +51,33 @@ const CategoryItems = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                console.log("Зареждане на предмети за категория:", category);
                 let q;
                 if (category) {
                     q = query(
                         collection(db, "magicItems"),
                         where("category", "==", category),
-                        orderBy("createdAt", "desc"),
-                        limit(3)
+                        orderBy("createdAt", "desc")
                     );
                 } else {
                     q = query(
                         collection(db, "magicItems"),
                         orderBy("createdAt", "desc"),
-                        limit(3)
+                        limit(4)
                     );
                 }
-
                 const snapshot = await getDocs(q);
-                const fetchedItems = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-
-                console.log("Намерени предмети:", fetchedItems);
-                setItems(fetchedItems);
+                setItems(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
             } catch (error) {
                 console.error("Грешка при зареждане на предметите:", error);
             }
         };
-
         fetchItems();
     }, [category]);
 
     return (
         <div className="category-items">
             <h2>
-                {category ? `Последни предмети от "${category}"` : "Последни предмети"}
+                {category ? `Предмети от категория "${category}"` : "Последни предмети"}
             </h2>
             <div className="items-list">
                 {items.length > 0 ? (
