@@ -1,41 +1,39 @@
-My Magic App
 
+My Magic App
 🌟 Overview
 
-My Magic App е интерактивно уеб приложение, което предлага магически преживявания! Хостнато е тук: https://mymagicapp-1acde.web.app/
+My Magic App is an interactive web application that offers magical experiences! It is hosted here: My Magic App
 
 🚀 Features
 
-🔮 Магически каталог с предмети
+🔮 Magical catalog with enchanted items
 
-🗺️ Интерактивна карта
+🗺️ Interactive map
 
-📜 Заклинания и магии
+📜 Spells and incantations
 
-🛡️ Защитен достъп с регистрация и вход
+🛡️ Secure access with registration and login
 
 🛠 Installation
 
-Клонирай репото:
+Clone the repository:
 
 git clone https://github.com/DimitriyaA/React-Project
 cd mymagicapp
-
-Инсталирай зависимостите:
+Install dependencies:
 
 npm install
-
-Стартирай приложението в локален сървър:
+Run the app on a local server:
 
 npm run dev
-
 📂 Deployment
 
-Приложението е хостнато с Firebase Hosting. За да го деплойнеш:
+The app is hosted using Firebase Hosting. To deploy it:
 
 firebase deploy
-
 📜 License
 
 This project is licensed under the MIT License.
+
+🔗 Repository: GitHub
 
