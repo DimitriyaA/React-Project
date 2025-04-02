@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import config from "../../config";
 import "../../styles/Auth.css";
 
 const Register = () => {
@@ -9,25 +10,24 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
-    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
 
         if (!email || !password || !rePassword || !username) {
-            setError("Моля, попълнете всички полета.");
+            alert(config.FILL_OUT_FIELDS_WARNING);
             return;
         }
 
         if (password !== rePassword) {
-            setError("Паролите не съвпадат.");
+            alert(config.PASSWORDS_DO_NOT_MATCH);
             return;
         }
 
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(email)) {
-            setError("Моля, въведете валиден имейл адрес.");
+            alert(config.INVALID_EMAIL_WARNING);
             return;
         }
 
@@ -37,9 +37,10 @@ const Register = () => {
 
             await updateProfile(user, { displayName: username });
 
+            alert(config.REGISTRATION_SUCCESS);
             navigate("/");
         } catch (error) {
-            setError("Грешка при регистрация: " + error.message);
+            alert(config.REGISTRATION_ERROR + error.message);
         }
     };
 
@@ -71,7 +72,6 @@ const Register = () => {
                     value={rePassword}
                     onChange={(e) => setRePassword(e.target.value)}
                 />
-                {error && <p className="auth-error">{error}</p>}
                 <button type="submit" className="auth-button">Регистрирай се</button>
                 <div className="auth-footer">
                     <p>Вече имате акаунт? <a href="/login">Влезте тук</a></p>

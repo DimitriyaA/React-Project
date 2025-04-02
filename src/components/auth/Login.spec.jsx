@@ -1,21 +1,19 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Login from './Login';
-import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'; // Import getAuth
+import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import { useNavigate } from 'react-router-dom';
 
-// Mock Firebase auth functions
 vi.mock('firebase/auth', async (importOriginal) => {
     const actual = await importOriginal();
     return {
         ...actual,
         signInWithEmailAndPassword: vi.fn(() => Promise.resolve({ user: { uid: 'test-uid' } })),
-        getAuth: vi.fn(() => ({})), // Mock getAuth
+        getAuth: vi.fn(() => ({})),
     };
 });
 
-// Mock useNavigate
 vi.mock('react-router-dom', () => ({
     useNavigate: vi.fn(),
 }));

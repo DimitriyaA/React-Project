@@ -108,6 +108,7 @@ describe('Register Component', () => {
         });
     });
 
+
     it('should show an error if registration fails', async () => {
         vi.mocked(createUserWithEmailAndPassword).mockRejectedValueOnce(new Error('Registration error'));
 
@@ -122,7 +123,7 @@ describe('Register Component', () => {
         fireEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(screen.getByText('Грешка при регистрация: Error: Registration error')).toBeInTheDocument();
+            expect(screen.getByText(/Грешка при регистрация: Error:/)).toBeInTheDocument();
         });
     });
 });

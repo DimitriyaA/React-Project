@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import "../styles/AddItem.css";
 
+import config from "../config";
+
 const AddItem = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -15,13 +17,15 @@ const AddItem = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // We are using the messages from the config object
         if (!name || !description || !imageUrl || !category) {
-            alert("Моля, попълнете всички полета!");
+            alert(config.FILL_OUT_FIELDS_WARNING);
             return;
         }
 
         if (!user) {
-            alert("Не сте влезли в системата!");
+            alert(config.NOT_LOGGED_IN_WARNING);
             return;
         }
 
