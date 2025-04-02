@@ -20,6 +20,7 @@ Clone the repository:
 
 git clone https://github.com/DimitriyaA/React-Project
 cd mymagicapp
+
 Install dependencies:
 
 npm install
