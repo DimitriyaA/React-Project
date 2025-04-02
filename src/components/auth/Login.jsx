@@ -2,19 +2,19 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import config from "../../config";
 import "../../styles/Auth.css";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
         if (!email || !password) {
-            setError("Моля, попълнете всички полета.");
+            alert(config.FILL_OUT_FIELDS_WARNING);
             return;
         }
 
@@ -22,7 +22,7 @@ const Login = () => {
             await signInWithEmailAndPassword(auth, email, password);
             navigate("/");
         } catch (error) {
-            setError("Грешка при вход: " + error.message);
+            alert(config.LOGIN_ERROR + error.message);
         }
     };
 
@@ -42,7 +42,6 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                {error && <p className="auth-error">{error}</p>}
                 <button type="submit" className="auth-button">Влезте</button>
                 <div className="auth-footer">
                     <p>Нямате акаунт? <a href="/register">Регистрирайте се тук</a></p>

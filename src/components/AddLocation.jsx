@@ -3,6 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useAuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import config from "../config";
 import "../styles/AddLocation.css";
 
 const AddLocation = () => {
@@ -17,8 +18,8 @@ const AddLocation = () => {
     if (!user) {
         return (
             <div className="add-location-container">
-                <h2 className="add-location-title text-red-500">Достъпът е отказан</h2>
-                <p className="add-location-message">Само регистрирани потребители могат да добавят локации.</p>
+                <h2 className="add-location-title text-red-500">{config.ACCESS_DENIED}</h2>
+                <p className="add-location-message">{config.NOT_LOGGED_IN_WARNING}</p>
             </div>
         );
     }
@@ -27,7 +28,7 @@ const AddLocation = () => {
         e.preventDefault();
 
         if (!name || !description || !lat || !lng) {
-            alert("Моля, попълнете всички полета!");
+            alert(config.FILL_OUT_FIELDS_WARNING);
             return;
         }
 
@@ -45,11 +46,11 @@ const AddLocation = () => {
             setDescription("");
             setLat("");
             setLng("");
-            alert("Локацията е добавена успешно!");
+            alert(config.ADD_LOCATION_SUCCESS);
             navigate("/map");
         } catch (error) {
             console.error("Грешка при добавяне:", error);
-            alert("Възникна грешка. Опитайте отново.");
+            alert(config.ADD_LOCATION_ERROR);
         }
     };
 
