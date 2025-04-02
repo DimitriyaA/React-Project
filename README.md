@@ -23,14 +23,17 @@ cd mymagicapp
 Install dependencies:
 
 npm install
-Run the app on a local server:
 
+Run the app on a local server:
 npm run dev
+
+
 📂 Deployment
 
 The app is hosted using Firebase Hosting. To deploy it:
 
 firebase deploy
+
 📜 License
 
 This project is licensed under the MIT License.
