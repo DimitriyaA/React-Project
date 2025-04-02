@@ -47,17 +47,6 @@ firebase deploy
 - React Router
 - Tailwind CSS (for styling)
 
-📸 **Screenshots**
-
-*(Add screenshots here if available)*
-
-🔧 **Environment Variables**
-
-If your app requires API keys or special configurations, create a `.env` file and add:
-
-```sh
-REACT_APP_API_KEY=your_api_key_here
-```
 
 📜 **Contributing**
 
