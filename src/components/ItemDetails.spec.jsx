@@ -6,7 +6,6 @@ import { vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import { getDoc, doc, deleteDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
-// Mock Firebase functions
 vi.mock('firebase/firestore', async (importOriginal) => {
     const actual = await importOriginal();
     return {
@@ -21,7 +20,6 @@ vi.mock('firebase/firestore', async (importOriginal) => {
     };
 });
 
-// Mock useNavigate and useParams
 vi.mock('react-router-dom', () => ({
     ...vi.importActual('react-router-dom'),
     useNavigate: vi.fn(),
@@ -127,8 +125,8 @@ describe('ItemDetails Component', () => {
         });
 
         await waitFor(() => {
-            expect(screen.getByText('✏️ Редактирай')).toBeInTheDocument();
-            expect(screen.getByText('🗑 Изтрий')).toBeInTheDocument();
+            expect(screen.getByRole('button', { name: '✏️ Редактирай' })).toBeInTheDocument();
+            expect(screen.getByRole('button', { name: '🗑 Изтрий' })).toBeInTheDocument();
         }, { timeout: 2000 });
     });
 
@@ -157,7 +155,7 @@ describe('ItemDetails Component', () => {
         });
 
         await waitFor(() => {
-            fireEvent.click(screen.getByText('🗑 Изтрий'));
+            fireEvent.click(screen.getByRole('button', { name: '🗑 Изтрий' }));
         }, { timeout: 2000 });
 
         await waitFor(() => {

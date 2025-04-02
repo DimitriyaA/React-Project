@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useAuthContext } from "../contexts/AuthContext";
+import config from "../config";
 import "../styles/EditItem.css";
 
 const EditItem = () => {
@@ -24,7 +25,7 @@ const EditItem = () => {
             if (docSnap.exists()) {
                 const itemData = docSnap.data();
                 if (itemData.createdBy !== user.uid) {
-                    alert("Нямате право да редактирате този предмет!");
+                    alert(config.NO_PERMISSION_TO_EDIT);
                     navigate("/catalog");
                     return;
                 }
@@ -33,7 +34,7 @@ const EditItem = () => {
                 setImageUrl(itemData.imageUrl);
                 setCategory(itemData.category);
             } else {
-                alert("Предметът не беше намерен!");
+                alert(config.ITEM_NOT_FOUND);
                 navigate("/catalog");
             }
             setLoading(false);
@@ -45,6 +46,11 @@ const EditItem = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
 
+        if (!name || !description || !imageUrl || !category) {
+            alert(config.FILL_OUT_FIELDS_WARNING);
+            return;
+        }
+
         try {
             await updateDoc(doc(db, "magicItems", id), {
                 name,
@@ -52,7 +58,7 @@ const EditItem = () => {
                 imageUrl,
                 category,
             });
-            alert("Предметът беше успешно редактиран!");
+            alert(config.EDIT_ITEM_SUCCESS);
             navigate(`/item/${id}`);
         } catch (error) {
             console.error("Грешка при обновяване:", error);

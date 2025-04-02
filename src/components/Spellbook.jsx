@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useAuthContext } from "../contexts/AuthContext";
+import config from "../config";
 import "../styles/Spellbook.css";
 
 const Spellbook = () => {
@@ -17,13 +18,19 @@ const Spellbook = () => {
     };
 
     const addSpell = async () => {
-        if (newSpell.name.trim() === "" || newSpell.description.trim() === "") return;
+        if (newSpell.name.trim() === "" || newSpell.description.trim() === "") {
+            alert(config.FILL_OUT_FIELDS_WARNING);
+            return;
+        }
+
         await addDoc(spellsRef, {
             name: newSpell.name,
             description: newSpell.description,
             createdBy: user?.displayName || "Anonymous",
             createdAt: new Date()
         });
+
+        alert(config.ADD_SPELL_SUCCESS); // Използване на съобщение от конфигурацията
         setNewSpell({ name: "", description: "" });
         getSpells();
     };
@@ -60,7 +67,7 @@ const Spellbook = () => {
                     </button>
                 </div>
             ) : (
-                <p className="spellbook-message">🔒 Трябва да сте регистриран потребител, за да добавяте магии.</p>
+                <p className="spellbook-message">{config.ACCESS_DENIED_SPELLBOOK}</p>
             )}
 
             <ul className="spellbook-list">
