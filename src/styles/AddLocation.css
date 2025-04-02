@@ -1,4 +1,4 @@
-/* --- Основен стил за добавяне на локация --- */
+/* --- Main style for adding a location --- */
 .add-location-container {
     background: linear-gradient(135deg, #B39DDB, #8f67d8);
     padding: 2rem;
@@ -60,7 +60,7 @@
     margin-bottom: 1rem;
 }
 
-/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+/* --- Responsive for tablets (max width 1024px) --- */
 @media screen and (max-width: 1024px) {
     .add-location-container {
         padding: 1.5rem;
@@ -83,7 +83,7 @@
     }
 }
 
-/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+/* --- Responsive for mobile devices (max width 768px) --- */
 @media screen and (max-width: 768px) {
     .add-location-container {
         padding: 1rem;
@@ -106,7 +106,7 @@
     }
 }
 
-/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+/* --- Responsive for small mobile devices (max width 480px) --- */
 @media screen and (max-width: 480px) {
     .add-location-container {
         padding: 0.5rem;

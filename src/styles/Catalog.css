@@ -1,4 +1,4 @@
-/* --- Основен стил за категорията --- */
+/* --- Main style for the category --- */
 .category-container {
     display: flex;
     justify-content: center;
@@ -12,7 +12,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* --- Странично меню --- */
+/* --- Sidebar --- */
 .category-sidebar {
     width: 30%;
     padding: 20px;
@@ -27,7 +27,7 @@
     margin-bottom: 20px;
 }
 
-/* Премахваме точките (булетите) от списъка */
+/* Removing bullets from the list */
 .category-sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -38,7 +38,7 @@
     margin: 10px 20px;
 }
 
-/* Бутони за категории */
+/* Buttons for categories */
 .category-sidebar button {
     width: 80%;
     padding: 1rem;
@@ -57,7 +57,7 @@
     transform: scale(1.05);
 }
 
-/* --- Основно съдържание --- */
+/* --- Main content --- */
 .category-items {
     width: 70%;
 }
@@ -69,7 +69,7 @@
     justify-content: center;
 }
 
-/* --- Карти с продукти --- */
+/* --- Product cards --- */
 .item-card {
     background: rgba(40, 40, 60, 0.9);
     padding: 15px;
@@ -88,7 +88,7 @@
     transform: scale(1.05);
 }
 
-/* --- Изображения в картите --- */
+/* --- Images in the cards --- */
 .item-card img {
     width: 100%;
     max-width: 280px;
@@ -101,7 +101,7 @@
     transform: scale(1.05);
 }
 
-/* --- Заглавие и описание на продукта --- */
+/* --- Product title and description --- */
 .item-card h3 {
     font-size: 1.4rem;
     color: #ffcc00;
@@ -114,7 +114,7 @@
     margin-bottom: 15px;
 }
 
-/* --- Бутон за детайли --- */
+/* --- Details button --- */
 .details-button {
     background: linear-gradient(145deg, #ffcc00, #d4a700);
     color: black;
@@ -131,7 +131,7 @@
     transform: scale(1.05);
 }
 
-/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+/* --- Responsive for tablets (max width 1024px) --- */
 @media screen and (max-width: 1024px) {
     .category-container {
         flex-direction: column;
@@ -165,7 +165,7 @@
     }
 }
 
-/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+/* --- Responsive for mobile devices (max width 768px) --- */
 @media screen and (max-width: 768px) {
     .category-container {
         padding: 10px;
@@ -206,7 +206,7 @@
     }
 }
 
-/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+/* --- Responsive for small mobile devices (max width 480px) --- */
 @media screen and (max-width: 480px) {
     .category-container {
         padding: 5px;

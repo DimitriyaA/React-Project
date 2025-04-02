@@ -1,4 +1,4 @@
-/* --- Основен стил --- */
+/* --- Main style --- */
 .edit-item-container {
     display: flex;
     justify-content: center;
@@ -65,7 +65,7 @@
     color: white;
 }
 
-/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+/* --- Responsive for tablets (max width 1024px) --- */
 @media screen and (max-width: 1024px) {
     .edit-item-form {
         padding: 1.5rem;
@@ -89,7 +89,7 @@
     }
 }
 
-/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+/* --- Responsive for mobile devices (max width 768px) --- */
 @media screen and (max-width: 768px) {
     .edit-item-container {
         padding: 1rem;
@@ -117,7 +117,7 @@
     }
 }
 
-/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+/* --- Responsive for small mobile devices (max width 480px) --- */
 @media screen and (max-width: 480px) {
     .edit-item-container {
         padding: 0.5rem;

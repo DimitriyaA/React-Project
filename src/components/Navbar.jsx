@@ -11,7 +11,7 @@ const Navbar = () => {
         setMenuOpen(!menuOpen);
     };
 
-    // Функция за затваряне на менюто при клик на линк
+    // Function to close the menu when a link is clicked
     const closeMenu = () => {
         setMenuOpen(false);
     };
@@ -19,17 +19,17 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-content">
-                {/* Лого */}
+                {/* Logo */}
                 <Link to="/" className="navbar-logo" onClick={closeMenu}>
                     <WandSparkles size={32} /> Магически свят
                 </Link>
 
-                {/* Бутон за сандвич меню */}
+                {/* Button for the sandwich menu */}
                 <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
                     ☰
                 </button>
 
-                {/* Навигационни линкове */}
+                {/* NavLinks */}
                 <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
                     <Link to="/catalog" className="navbar-link" onClick={closeMenu}>Каталог</Link>
                     <Link to="/search" className="navbar-link" onClick={closeMenu}>Търсене в каталога</Link>
@@ -39,7 +39,7 @@ const Navbar = () => {
                     {user && <Link to="/map/add" className="navbar-link" onClick={closeMenu}>Добави локация</Link>}
                     {user && <Link to="/profile" className="navbar-link" onClick={closeMenu}>Профил</Link>}
 
-                    {/* Потребителски бутон */}
+                    {/* User Button */}
                     <div className="flex items-center gap-4">
                         {user ? (
                             <>

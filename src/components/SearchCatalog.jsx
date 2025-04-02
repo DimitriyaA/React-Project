@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import "../styles/SearchCatalog.css";  // Включване на новия CSS файл
+import "../styles/SearchCatalog.css";
 
 const SearchCatalog = () => {
     const [items, setItems] = useState([]);

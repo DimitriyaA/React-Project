@@ -3,21 +3,19 @@ import { vi } from 'vitest';
 import Register from './Register';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import '@testing-library/jest-dom/vitest'; // Добавете този импорт
 
-// Мокиране на Firebase и react-router-dom
+// Mocking Firebase and react-router-dom
 vi.mock('firebase/auth', async (importOriginal) => {
     const actual = await importOriginal();
     return {
         ...actual,
-        getAuth: vi.fn(() => ({
-            currentUser: { uid: '123' },
-        })),
         createUserWithEmailAndPassword: vi.fn(),
         updateProfile: vi.fn(),
     };
 });
 
-
+// Mocking react-router-dom
 vi.mock('react-router-dom', () => ({
     useNavigate: vi.fn(),
 }));
@@ -80,10 +78,11 @@ describe('Register Component', () => {
     });
 
     it('should successfully register a user and navigate to the homepage', async () => {
-        createUserWithEmailAndPassword.mockResolvedValueOnce({
+        const mockUserCredential = {
             user: { uid: '123', email: 'test@test.com' },
-        });
-        updateProfile.mockResolvedValueOnce();
+        };
+        vi.mocked(createUserWithEmailAndPassword).mockResolvedValueOnce(mockUserCredential);
+        vi.mocked(updateProfile).mockResolvedValueOnce();
 
         render(<Register />);
 
@@ -96,13 +95,13 @@ describe('Register Component', () => {
         fireEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(createUserWithEmailAndPassword).toHaveBeenCalledWith(
+            expect(vi.mocked(createUserWithEmailAndPassword)).toHaveBeenCalledWith(
                 expect.anything(),
                 'test@test.com',
                 'password'
             );
-            expect(updateProfile).toHaveBeenCalledWith(
-                { uid: '123', email: 'test@test.com' },
+            expect(vi.mocked(updateProfile)).toHaveBeenCalledWith(
+                mockUserCredential.user,
                 { displayName: 'username' }
             );
             expect(mockNavigate).toHaveBeenCalledWith('/');
@@ -110,7 +109,7 @@ describe('Register Component', () => {
     });
 
     it('should show an error if registration fails', async () => {
-        createUserWithEmailAndPassword.mockRejectedValueOnce(new Error('Registration error'));
+        vi.mocked(createUserWithEmailAndPassword).mockRejectedValueOnce(new Error('Registration error'));
 
         render(<Register />);
 

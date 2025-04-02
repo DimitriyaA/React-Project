@@ -20,7 +20,7 @@ class ErrorBoundary extends Component {
             return (
                 <div>
                     <h1>Неочаквана грешка.</h1>
-                    {/* Показваме подробности за грешката, ако има такива */}
+                    {/* Show error details if available */}
                     <details style={{ whiteSpace: 'pre-wrap' }}>
                         {this.state.errorInfo && this.state.errorInfo.componentStack}
                     </details>

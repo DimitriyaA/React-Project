@@ -1,4 +1,4 @@
-/* --- Основен стил --- */
+/* --- Main Style --- */
 .spellbook-container {
     background: linear-gradient(135deg, #B39DDB, #8f67d8);
     padding: 2rem;
@@ -92,7 +92,7 @@
     color: #aaa;
 }
 
-/* --- Респонсив за таблети (максимална ширина 1024px) --- */
+/* --- Responsive for Tablets (maximum width 1024px) --- */
 @media screen and (max-width: 1024px) {
     .spellbook-container {
         padding: 1.5rem;
@@ -117,7 +117,7 @@
     }
 }
 
-/* --- Респонсив за мобилни устройства (максимална ширина 768px) --- */
+/* --- Responsive for Mobile Devices (maximum width 768px) --- */
 @media screen and (max-width: 768px) {
     .spellbook-container {
         padding: 1rem;
@@ -148,7 +148,7 @@
     }
 }
 
-/* --- Респонсив за малки мобилни устройства (максимална ширина 480px) --- */
+/* --- Responsive for Small Mobile Devices (maximum width 480px) --- */
 @media screen and (max-width: 480px) {
     .spellbook-container {
         padding: 0.8rem;

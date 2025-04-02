@@ -16,7 +16,7 @@ import AuthGuard from "../components/guards/AuthGuard";
 import GuestGuard from "../components/guards/GuestGuard";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import NotFound from "../components/NotFound"; // Импортирай компонента за 404
+import NotFound from "../components/NotFound";
 import "../App.css";
 
 const AppRouter = () => {
@@ -34,7 +34,7 @@ const AppRouter = () => {
                         <Route path="/spellbook" element={<Spellbook />} />
                         <Route path="/map" element={<MagicMap />} />
 
-                        {/* 🔒 Само за регистрирани потребители */}
+                        {/* 🔒 only for auth users */}
                         <Route element={<AuthGuard />}>
                             <Route path="/add-item" element={<AddItem />} />
                             <Route path="/edit-item/:id" element={<EditItem />} />
@@ -42,14 +42,13 @@ const AppRouter = () => {
                             <Route path="/profile" element={<ProfilePage />} />
                         </Route>
 
-                        {/* 🔓 Само за гости */}
+                        {/* 🔓 only for guests */}
                         <Route element={<GuestGuard />}>
                             <Route path="/login" element={<Login />} />
                             <Route path="/register" element={<Register />} />
                         </Route>
 
-                        {/* Пренасочване при невалиден URL - 404 страница */}
-                        <Route path="*" element={<NotFound />} /> {/* Тук показваме компонента NotFound */}
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>
                 <Footer />

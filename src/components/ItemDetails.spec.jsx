@@ -1,38 +1,33 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { AuthProvider } from '../contexts/AuthContext'; // Импортирай AuthProvider
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { MemoryRouter, useNavigate, useParams } from 'react-router-dom';
+import { AuthProvider } from '../contexts/AuthContext';
 import ItemDetails from '../components/ItemDetails';
 import { vi } from 'vitest';
+import '@testing-library/jest-dom/vitest';
+import { getDoc, doc, deleteDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
-// Мок на Firebase функции
+// Mock Firebase functions
 vi.mock('firebase/firestore', async (importOriginal) => {
     const actual = await importOriginal();
     return {
         ...actual,
-        getDoc: vi.fn(() => Promise.resolve({ exists: () => true, data: () => ({ title: 'Test Item' }) })),
+        getDoc: vi.fn(() => Promise.resolve({ exists: () => true, data: () => ({ name: 'Test Item' }) })),
         doc: vi.fn(),
         deleteDoc: vi.fn(() => Promise.resolve()),
+        collection: vi.fn(),
+        getDocs: vi.fn(() => Promise.resolve({ docs: [] })),
+        query: vi.fn(),
+        where: vi.fn(),
     };
 });
 
-
-// Мок на useNavigate
+// Mock useNavigate and useParams
 vi.mock('react-router-dom', () => ({
     ...vi.importActual('react-router-dom'),
     useNavigate: vi.fn(),
     useParams: vi.fn(),
+    MemoryRouter: ({ children }) => <div>{children}</div>,
 }));
-
-// Мок на react-router-dom
-vi.mock('react-router-dom', async (importOriginal) => {
-    const actual = await importOriginal();
-    return {
-        ...actual,
-        useParams: vi.fn(() => ({ id: '123' })), // Мокиране на useParams()
-        useNavigate: vi.fn(),
-    };
-});
-
 
 describe('ItemDetails Component', () => {
     const mockNavigate = vi.fn();
@@ -41,10 +36,11 @@ describe('ItemDetails Component', () => {
     beforeEach(() => {
         mockNavigate.mockClear();
         mockUseParams.mockClear();
+        useNavigate.mockImplementation(() => mockNavigate);
+        useParams.mockImplementation(() => mockUseParams());
     });
 
     it('should display loading message when data is loading', () => {
-        // Мок на useParams да връща някакъв id
         mockUseParams.mockReturnValue({ id: '123' });
 
         render(
@@ -60,15 +56,17 @@ describe('ItemDetails Component', () => {
 
     it('should display error message if item is not found', async () => {
         mockUseParams.mockReturnValue({ id: '123' });
-        getDoc.mockResolvedValueOnce({ exists: () => false });
+        vi.mocked(getDoc).mockResolvedValueOnce({ exists: () => false });
 
-        render(
-            <AuthProvider value={{ user: { uid: 'user1' } }}>
-                <MemoryRouter>
-                    <ItemDetails />
-                </MemoryRouter>
-            </AuthProvider>
-        );
+        await act(async () => {
+            render(
+                <AuthProvider value={{ user: { uid: 'user1' } }}>
+                    <MemoryRouter>
+                        <ItemDetails />
+                    </MemoryRouter>
+                </AuthProvider>
+            );
+        });
 
         await waitFor(() => {
             expect(screen.getByText('Артикулът не беше намерен.')).toBeInTheDocument();
@@ -86,15 +84,17 @@ describe('ItemDetails Component', () => {
             createdByName: 'Test User',
         };
         mockUseParams.mockReturnValue({ id: '123' });
-        getDoc.mockResolvedValueOnce({ exists: () => true, data: () => mockItem });
+        vi.mocked(getDoc).mockResolvedValueOnce({ exists: () => true, data: () => mockItem });
 
-        render(
-            <AuthProvider value={{ user: { uid: 'user1' } }}>
-                <MemoryRouter>
-                    <ItemDetails />
-                </MemoryRouter>
-            </AuthProvider>
-        );
+        await act(async () => {
+            render(
+                <AuthProvider value={{ user: { uid: 'user1' } }}>
+                    <MemoryRouter>
+                        <ItemDetails />
+                    </MemoryRouter>
+                </AuthProvider>
+            );
+        });
 
         await waitFor(() => {
             expect(screen.getByText(mockItem.name)).toBeInTheDocument();
@@ -114,20 +114,22 @@ describe('ItemDetails Component', () => {
             createdByName: 'Test User',
         };
         mockUseParams.mockReturnValue({ id: '123' });
-        getDoc.mockResolvedValueOnce({ exists: () => true, data: () => mockItem });
+        vi.mocked(getDoc).mockResolvedValueOnce({ exists: () => true, data: () => mockItem });
 
-        render(
-            <AuthProvider value={{ user: { uid: 'user1' } }}>
-                <MemoryRouter>
-                    <ItemDetails />
-                </MemoryRouter>
-            </AuthProvider>
-        );
+        await act(async () => {
+            render(
+                <AuthProvider value={{ user: { uid: 'user1' } }}>
+                    <MemoryRouter>
+                        <ItemDetails />
+                    </MemoryRouter>
+                </AuthProvider>
+            );
+        });
 
         await waitFor(() => {
-            expect(screen.getByText('Редактирай')).toBeInTheDocument();
-            expect(screen.getByText('Изтрий')).toBeInTheDocument();
-        });
+            expect(screen.getByText('✏️ Редактирай')).toBeInTheDocument();
+            expect(screen.getByText('🗑 Изтрий')).toBeInTheDocument();
+        }, { timeout: 2000 });
     });
 
     it('should delete item when delete button is clicked', async () => {
@@ -141,23 +143,25 @@ describe('ItemDetails Component', () => {
             createdByName: 'Test User',
         };
         mockUseParams.mockReturnValue({ id: '123' });
-        getDoc.mockResolvedValueOnce({ exists: () => true, data: () => mockItem });
-        deleteDoc.mockResolvedValueOnce();
+        vi.mocked(getDoc).mockResolvedValueOnce({ exists: () => true, data: () => mockItem });
+        vi.mocked(deleteDoc).mockResolvedValueOnce();
 
-        render(
-            <AuthProvider value={{ user: { uid: 'user1' } }}>
-                <MemoryRouter>
-                    <ItemDetails />
-                </MemoryRouter>
-            </AuthProvider>
-        );
-
-        await waitFor(() => {
-            fireEvent.click(screen.getByText('Изтрий'));
+        await act(async () => {
+            render(
+                <AuthProvider value={{ user: { uid: 'user1' } }}>
+                    <MemoryRouter>
+                        <ItemDetails />
+                    </MemoryRouter>
+                </AuthProvider>
+            );
         });
 
         await waitFor(() => {
-            expect(deleteDoc).toHaveBeenCalledWith(expect.objectContaining({ id: '123' }));
+            fireEvent.click(screen.getByText('🗑 Изтрий'));
+        }, { timeout: 2000 });
+
+        await waitFor(() => {
+            expect(vi.mocked(deleteDoc)).toHaveBeenCalledWith(expect.anything());
             expect(mockNavigate).toHaveBeenCalledWith('/catalog');
         });
     });

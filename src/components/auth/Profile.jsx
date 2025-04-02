@@ -17,17 +17,17 @@ const ProfilePage = () => {
             try {
                 console.log("Логнат потребител: ", user.uid);
 
-                // Запитване за магическите предмети с UID на потребителя
+                // Query for magic items with the user's UID
                 const itemsQuery = query(collection(db, "magicItems"), where("createdBy", "==", user.uid));
                 const itemsSnapshot = await getDocs(itemsQuery);
                 setItems(itemsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
 
-                // Запитване за магиите с името на потребителя
+                // Query for spells with the user's display name
                 const spellsQuery = query(collection(db, "spells"), where("createdBy", "==", user.displayName));
                 const spellsSnapshot = await getDocs(spellsQuery);
                 setSpells(spellsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
 
-                // Запитване за локациите с името на потребителя
+                // Query for locations with the user's display name
                 const locationsQuery = query(collection(db, "locations"), where("createdBy", "==", user.displayName));
                 const locationsSnapshot = await getDocs(locationsQuery);
                 setLocations(locationsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));

@@ -4,12 +4,12 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const useAuth = () => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true); // Добавяме loading state
+    const [loading, setLoading] = useState(true); // add loading state
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            setLoading(false); // Спираме зареждането
+            setLoading(false); // stop losading
         });
 
         return () => unsubscribe();
@@ -26,7 +26,7 @@ const useAuth = () => {
 
     return {
         user,
-        isAuthenticated: !!user, // Добавяме isAuthenticated
+        isAuthenticated: !!user, // add isAuthenticated
         loading,
         logout
     };
