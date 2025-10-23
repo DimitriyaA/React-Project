@@ -1,4 +1,5 @@
-name: React CI 
+name: React CI (Adaptive)
+
 on:
   push:
     branches: [ main ]
@@ -10,16 +11,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧾 Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: 🏗️ Build React app
-        run: npm run build
+      - name: Determine build command
+        id: build-command
+        run: |
+          echo "PROJECT_TYPE=unknown" >> $GITHUB_ENV
+          # Ако имаш react-scripts
+          if grep -q "\"react-scripts build\"" package.json; then
+            echo "PROJECT_TYPE=react-scripts" >> $GITHUB_ENV
+          fi
+          # Ако имаш vite build
+          if grep -q "\"vite build\"" package.json; then
+            echo "PROJECT_TYPE=vite" >> $GITHUB_ENV
+          fi
+          echo "Detected project type: $PROJECT_TYPE"
+
+      - name: Build
+        run: |
+          if [ "$PROJECT_TYPE" = "react-scripts" ]; then
+            echo "Running react-scripts build"
+            npm run build
+          elif [ "$PROJECT_TYPE" = "vite" ]; then
+            echo "Running vite build"
+            npm run build
+          else
+            echo "No recognized build script — attempting default npm run build"
+            npm run build
+          fi
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: |
+            build
+            dist
