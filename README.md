@@ -61,5 +61,3 @@ For questions or collaboration, reach out via [GitHub Issues](https://github.com
 This project is licensed under the MIT License.
 
 🔗 **Repository:** [GitHub](https://github.com/DimitriyaA/React-Project)
-
-
