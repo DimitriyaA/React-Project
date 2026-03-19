@@ -1,0 +1,141 @@
+/* --- Main style for adding an item --- */
+.add-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+.add-item-form {
+    background: linear-gradient(135deg, #B39DDB, #8f67d8);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px;
+    color: white;
+    text-align: center;
+}
+
+.add-item-title {
+    font-size: 1.5rem;
+    color: #ffcc00;
+    margin-bottom: 1rem;
+}
+
+.add-item-form input,
+.add-item-form textarea,
+.add-item-form select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffffff;
+    color: #333;
+}
+
+.add-item-button {
+    width: 100%;
+    background: linear-gradient(145deg, #7d40ff, #5a2db0);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-item-button:hover {
+    background: linear-gradient(145deg, #5a2db0, #7d40ff);
+    transform: scale(1.05);
+}
+
+.add-item-button:active {
+    transform: scale(0.95);
+}
+
+/* --- Responsive for tablets (max width 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .add-item-form {
+        padding: 1.5rem;
+        max-width: 400px;
+    }
+
+    .add-item-title {
+        font-size: 1.4rem;
+    }
+
+    .add-item-form input,
+    .add-item-form textarea,
+    .add-item-form select {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+
+    .add-item-button {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+}
+
+/* --- Responsive for mobile devices (max width 768px) --- */
+@media screen and (max-width: 768px) {
+    .add-item-container {
+        padding: 1rem;
+    }
+
+    .add-item-form {
+        padding: 1.2rem;
+        max-width: 90%;
+    }
+
+    .add-item-title {
+        font-size: 1.3rem;
+    }
+
+    .add-item-form input,
+    .add-item-form textarea,
+    .add-item-form select {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .add-item-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+}
+
+/* --- Responsive for small mobile devices (max width 480px) --- */
+@media screen and (max-width: 480px) {
+    .add-item-container {
+        padding: 0.5rem;
+    }
+
+    .add-item-form {
+        padding: 1rem;
+        max-width: 95%;
+    }
+
+    .add-item-title {
+        font-size: 1.2rem;
+    }
+
+    .add-item-form input,
+    .add-item-form textarea,
+    .add-item-form select {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        max-width: 90%;
+    }
+
+    .add-item-button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        max-width: 85%;
+    }
+}

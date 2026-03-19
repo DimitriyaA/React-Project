@@ -1,0 +1,179 @@
+/* --- Main Style --- */
+.spellbook-container {
+    background: linear-gradient(135deg, #B39DDB, #8f67d8);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.spellbook-title {
+    font-size: 2rem;
+    color: #ffcc00;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.spellbook-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.spellbook-input,
+.spellbook-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    font-size: 1rem;
+}
+
+.spellbook-button {
+    background: linear-gradient(145deg, #7d40ff, #5a2db0);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.spellbook-button:hover {
+    background: linear-gradient(145deg, #5a2db0, #7d40ff);
+    transform: scale(1.05);
+}
+
+.spellbook-button:active {
+    transform: scale(0.95);
+}
+
+.spellbook-message {
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.spellbook-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style-type: none;
+}
+
+.spellbook-item {
+    background: #2c2a47;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #5a2db0;
+}
+
+.spellbook-item-title {
+    font-size: 1.5rem;
+    color: #ffcc00;
+    margin-bottom: 1rem;
+}
+
+.spellbook-item-description {
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+.spellbook-item-footer {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+/* --- Responsive for Tablets (maximum width 1024px) --- */
+@media screen and (max-width: 1024px) {
+    .spellbook-container {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .spellbook-title {
+        font-size: 1.8rem;
+    }
+
+    .spellbook-input,
+    .spellbook-textarea {
+        font-size: 0.95rem;
+    }
+
+    .spellbook-item {
+        padding: 1.2rem;
+    }
+
+    .spellbook-item-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* --- Responsive for Mobile Devices (maximum width 768px) --- */
+@media screen and (max-width: 768px) {
+    .spellbook-container {
+        padding: 1rem;
+        max-width: 95%;
+    }
+
+    .spellbook-title {
+        font-size: 1.6rem;
+    }
+
+    .spellbook-input,
+    .spellbook-textarea {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .spellbook-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .spellbook-item {
+        padding: 1rem;
+    }
+
+    .spellbook-item-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Responsive for Small Mobile Devices (maximum width 480px) --- */
+@media screen and (max-width: 480px) {
+    .spellbook-container {
+        padding: 0.8rem;
+    }
+
+    .spellbook-title {
+        font-size: 1.4rem;
+    }
+
+    .spellbook-input,
+    .spellbook-textarea {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .spellbook-button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .spellbook-item {
+        padding: 0.8rem;
+    }
+
+    .spellbook-item-title {
+        font-size: 1.1rem;
+    }
+}
